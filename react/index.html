@@ -1,23 +1,53 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <script src="./react_js/react.development.js" ></script>
-    <script src="./react_js/react-dom.development.js" ></script>
-    <script src="./react_js/babel.min.js"></script>
-  </head>
-  <body>
+<html lang="en">
 
-    <div id="mydiv"></div>
+<head>
+  <script src="./react_js/react.development.js" ></script>
+  <script src="./react_js/react-dom.development.js" ></script>
+  <script src="./react_js/babel.min.js"></script>
+  <title>Document</title>
+</head>
 
-    <script type="text/babel">
-      function Hello() {
-        return <h1>Hello World!</h1>;
-      }
-      
-      const container = document.getElementById('mydiv');
-      const root = ReactDOM.createRoot(container);
-      root.render(<Hello />)
-    </script>
+<body>
+
+  <h1>OpenCode</h1>
+
+    <div id="banner">
+
+    </div>
+
+    <footer>
+        <p>footer</p>
+    </footer>
 
   </body>
+
+<script type="text/babel">
+
+  const Banner = () =>{
+    const title = 'Welcome to my Site';
+    const subTitle = "I'm learning react";
+
+    const handelClick = () => {
+      console.log("hello");
+    }
+
+    return (
+      <div className="baner">
+        <h2>{title}</h2>
+        <p>{subTitle}</p>
+        <p>Today's date : {new Date().toDateString()}</p>
+        <button onClick={handelClick}>Click</button>
+      </div>
+    )
+  }
+
+  //Render the Component to the DOM 
+  // ReactDoM.createRoot(document.getElementById("banner")).render(<Banner />);
+  const container = document.getElementById('banner');
+  const root = ReactDOM.createRoot(container);
+  root.render(<Banner />)
+
+</script> 
+
 </html>
