@@ -1,0 +1,5 @@
+useful command to run react project on your device :
+first command :
+mkdir C:\Users\Kasma\AppData\Roaming\npm
+second command :
+npm config set prefix "C:\Users\Kasma\AppData\Roaming\npm"
