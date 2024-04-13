@@ -2,9 +2,8 @@ import './App.css';
 import { useState } from 'react';
 function App() {
 
-  // let name = "Mahdi";
-  const [name , setName] = useState ("Mahdi");
-  const [events , setEvents] = useState ([
+  const [showEvents, setShowEvents] = useState (true);
+  const [events, setEvents] = useState ([
     {title: "Thor: Love And Thunder (2022)", id: 1},
     {title: "The Gray Man (2022)", id: 2},
     {title: "The Sea Beast (2022)", id: 3},
@@ -13,21 +12,38 @@ function App() {
     {title: "Hustle (2022)", id: 6}
   ]);
 
-  const handleClick = () => {
-    
-    setName("Kasma");
-    console.log(name);
-    // console.log(setName);
+  const handleClick = (id) => {
+    setEvents((prevEvents) => {
+      return prevEvents.filter((event) => {
+        return id !== event.id;
+      })
+    })
   }
 
   return (
     <div className="App">
-      <h1>{name}</h1>
-      <button onClick={handleClick}>Change Name</button>
+      
       {
-        events.map((event, index) => (
+        showEvents && (
+          <div>
+            <button onClick={() => setShowEvents(false)}>Hide</button>
+          </div>
+        )
+      }
+
+      {
+        !showEvents && (
+          <div>
+            <button onClick={() => setShowEvents(true)}>Show</button>
+          </div>
+        )
+      }
+
+      {
+        showEvents && events.map((event, index) => (
           <div key={event.id}>
             <p>{index + 1}-{event.title}</p>
+            <button onClick={() => handleClick(event.id)}>Delete</button>
           </div>
         ))
       }
