@@ -3,3 +3,6 @@ first command :
 mkdir C:\Users\Kasma\AppData\Roaming\npm
 second command :
 npm config set prefix "C:\Users\Kasma\AppData\Roaming\npm"
+
+command for start react app that must be written in command prompt in the path of react folder app
+npm run start
