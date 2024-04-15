@@ -1,7 +1,12 @@
 import './App.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import Titel from './components/Title';
+import Modal from './components/Modal';
+import EventList from './components/EventList';
+
 function App() {
 
+  const [showModal, setShowModal] = useState (false);
   const [showEvents, setShowEvents] = useState (true);
   const [events, setEvents] = useState ([
     {title: "Thor: Love And Thunder (2022)", id: 1},
@@ -20,9 +25,19 @@ function App() {
     })
   }
 
+  const handleClose = () => {
+    setShowModal(false);
+  }
+
+  // const handleOpen = () => {
+  //   setShowModal(true);
+  // }
+
+  const subTitle = "Latest Movies";
+
   return (
     <div className="App">
-      
+      <Titel title="Teacher Favorite Movies" subtitle={subTitle} />
       {
         showEvents && (
           <div>
@@ -40,13 +55,30 @@ function App() {
       }
 
       {
-        showEvents && events.map((event, index) => (
-          <div key={event.id}>
-            <p>{index + 1}-{event.title}</p>
-            <button onClick={() => handleClick(event.id)}>Delete</button>
-          </div>
-        ))
+        showEvents && <EventList info={events} delete={handleClick}/>
       }
+
+      {/* <Modal>
+          <h1>10% percent off</h1>
+          <p>kasma</p>
+      </Modal> */}
+
+      {
+        showModal && <Modal handleclose={handleClose}>
+            <h1>Terms and Conditions</h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime fugit praesentium laudantium aspernatur quia iure obcaecati et officiis atque nisi quas non reprehenderit modi, sequi laborum totam expedita? Voluptatem, placeat?</p>
+        </Modal>
+      }
+
+      {
+        !showModal && (
+          <div>
+            <button onClick={() => setShowModal(true)}>Show Modal</button>
+          </div>
+        )
+      }
+
+      <Titel title="Footer" subtitle="This is a footer" />
     </div>
   );
 }
