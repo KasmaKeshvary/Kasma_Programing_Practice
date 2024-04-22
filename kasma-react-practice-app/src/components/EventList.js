@@ -1,12 +1,14 @@
 import React from 'react';
+import styles from './EventList.module.css'
+
 export default function EventList(props) {
   return (
     <div>
       {props.info.map((event, index) => (
-          <React.Fragment key={event.id}>
+          <div className={styles.card} key={event.id}>
             <p>{index + 1}-{event.title}</p>
-            <button onClick={() => props.delete(event.id)}>Delete</button>
-          </React.Fragment>
+            <button id={styles.butt}  onClick={() => props.delete(event.id)}>Delete</button>
+          </div>
         ))}
     </div>
   )

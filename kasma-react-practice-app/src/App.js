@@ -64,7 +64,7 @@ function App() {
       </Modal> */}
 
       {
-        showModal && <Modal handleclose={handleClose}>
+        showModal && <Modal handleclose={handleClose} isSalesModal={true}>
             <h1>Terms and Conditions</h1>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime fugit praesentium laudantium aspernatur quia iure obcaecati et officiis atque nisi quas non reprehenderit modi, sequi laborum totam expedita? Voluptatem, placeat?</p>
         </Modal>
