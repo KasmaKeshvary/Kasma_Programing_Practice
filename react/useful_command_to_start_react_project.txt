@@ -1,3 +1,8 @@
+for starting react project in any folder:
+npx create-react-app my-react-app
+npm install
+
+
 useful command to run react project on your device :
 first command :
 mkdir C:\Users\Kasma\AppData\Roaming\npm
@@ -6,3 +11,6 @@ npm config set prefix "C:\Users\Kasma\AppData\Roaming\npm"
 
 command for start react app that must be written in command prompt in the path of react folder app
 npm run start
+
+the below command use for to create pages
+npm install react-router-dom
