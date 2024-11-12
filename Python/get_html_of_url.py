@@ -9,30 +9,16 @@ service = Service(r'C:\Users\Kasma\Desktop\Kasma_Programming_Practice\Python\chr
 driver = webdriver.Chrome(service=service)
 
 # Open a URL
-driver.get('https://units.bmi.ir/fa/?smnuid=10011445')  # Replace with the actual URL you want to visit
-
-# Get and print the page title
-title = driver.title
-print("Page Title:", title)
+driver.get('https://www.edbi.ir/web_directory/41640-%D8%B4%D8%B9%D8%A8-%D8%AF%D8%A7%D8%AE%D9%84%DB%8C.html')  # Replace with the actual URL you want to visit
 
 # Get the complete HTML of the page
 html_content = driver.page_source
-print("HTML Content:")
-print(html_content)  # This will print the entire HTML
-
-# Get and print all headings
-headings = driver.find_elements(By.TAG_NAME, 'h1') + driver.find_elements(By.TAG_NAME, 'h2') + driver.find_elements(By.TAG_NAME, 'h3')
-for heading in headings:
-    print("Heading:", heading.text)
-
-# Get and print all paragraphs
-paragraphs = driver.find_elements(By.TAG_NAME, 'p')
-for paragraph in paragraphs:
-    print("Paragraph:", paragraph.text)
+# print("HTML Content:")
+# print(html_content)  # This will print the entire HTML
 
 # Close the driver
 driver.quit()
 
 # Save HTML content to a file
-with open('page_content_units_interior_two.html', 'w', encoding='utf-8') as f:
+with open('toseesaderat_Bank_branches.html', 'w', encoding='utf-8') as f:
     f.write(html_content)

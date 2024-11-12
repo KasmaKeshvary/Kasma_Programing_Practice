@@ -17,23 +17,6 @@ driver.get('https://units.bmi.ir/fa/?smnuid=10011445')  # Replace with the actua
 title = driver.title
 print("Page Title:", title)
 
-# # Get and print the complete HTML of the page
-# html_content = driver.page_source
-# print("HTML Content:")
-# print(html_content)  # This will print the entire HTML
-
-# # Get and print all headings
-# headings = driver.find_elements(By.TAG_NAME, 'h1') + driver.find_elements(By.TAG_NAME, 'h2') + driver.find_elements(By.TAG_NAME, 'h3')
-# for heading in headings:
-#     print("Heading:", heading.text)
-
-# # Get and print all paragraphs
-# paragraphs = driver.find_elements(By.TAG_NAME, 'p')
-# for paragraph in paragraphs:
-#     print("Paragraph:", paragraph.text)
-
-# Assuming the download button has a specific class or ID
-# Adjust the selector as necessary to target the download link/button
 try:
     excel_link = driver.find_element(By.ID, 'MainContent_ucUnitList1_lnkExcelDownload')
     
