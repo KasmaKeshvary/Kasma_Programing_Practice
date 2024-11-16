@@ -9,7 +9,7 @@ service = Service(r'C:\Users\Kasma\Desktop\Kasma_Programming_Practice\Python\chr
 driver = webdriver.Chrome(service=service)
 
 # Open a URL
-driver.get('https://www.edbi.ir/web_directory/41640-%D8%B4%D8%B9%D8%A8-%D8%AF%D8%A7%D8%AE%D9%84%DB%8C.html')  # Replace with the actual URL you want to visit
+driver.get('https://www.middleeastbank.ir/page/branches')  # Replace with the actual URL you want to visit
 
 # Get the complete HTML of the page
 html_content = driver.page_source
@@ -20,5 +20,5 @@ html_content = driver.page_source
 driver.quit()
 
 # Save HTML content to a file
-with open('toseesaderat_Bank_branches.html', 'w', encoding='utf-8') as f:
+with open('khavarmianeh_Bank_branches.html', 'w', encoding='utf-8') as f:
     f.write(html_content)
