@@ -8,7 +8,7 @@ import pandas as pd
 import time
 
 # Specify the path to your webdriver
-service = Service(r'C:\Users\Kasma\Desktop\Kasma_Programming_Practice\Python\chromedriver.exe')
+service = Service(r'C:\Users\Kasma\Desktop\Kasma_Programming_Practice\Python\Get_Iranian_Bank_Data\Ready_To_Run\chromedriver.exe')
 
 # Initialize the WebDriver using the Service
 driver = webdriver.Chrome(service=service)
@@ -19,29 +19,30 @@ data = []
 
 try:
     # Open the URL
-    driver.get('https://day24.ir/%D8%B4%D8%B9%D8%A8-%D8%A8%D8%A7%D9%86%DA%A9-%D8%AF%DB%8C')
+    driver.get('https://www.rqbank.ir/atmlist')
 
 
     wait = WebDriverWait(driver, 10)
-    wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'table-head')))
+    wait.until(EC.presence_of_element_located((By.TAG_NAME, 'thead')))
 
     # Extract header data
-    header_div = driver.find_element(By.CLASS_NAME, 'table-head')
-    header_rows = header_div.find_elements(By.CLASS_NAME, 'table-col')  # Get all header cells
+    thead = driver.find_element(By.TAG_NAME, 'thead')
+    header_rows = thead.find_elements(By.TAG_NAME, 'th')  # Get all header cells
     headers = [header.text for header in header_rows]  # Save the header texts
     
 
-    divs = driver.find_elements(By.CLASS_NAME, 'each-table-row')
+    tbody = driver.find_element(By.TAG_NAME, 'tbody')
+    rows = driver.find_elements(By.TAG_NAME, 'tr')
 
-    for div in divs:
+    for row in rows:
         
         try:
             
-            columns = div.find_elements(By.CLASS_NAME, 'table-col')
+            columns = row.find_elements(By.TAG_NAME, 'td')
             # Append the column data to the list
             row_data = [column.text for column in columns]
             data.append(row_data)
-            # print(row_data)
+            print(row_data)
         
         except StaleElementReferenceException:
             print("Encountered stale element reference exception. Continuing.")
@@ -49,7 +50,7 @@ try:
         print()  # Add a newline for better readability
 
     df_branches = pd.DataFrame(data, columns=headers)  # Use the headers as columns
-    df_branches.to_excel('dey_bank_branches.xlsx', index=False)
+    df_branches.to_excel('resalat_bank_branches.xlsx', index=False)
 
 finally:
     # Close the driver

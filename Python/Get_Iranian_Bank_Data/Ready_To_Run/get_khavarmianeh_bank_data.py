@@ -14,7 +14,7 @@ import pandas as pd
 import time
 
 # Specify the path to your webdriver
-service = Service(r'C:\Users\Kasma\Desktop\Kasma_Programming_Practice\Python\chromedriver.exe')
+service = Service(r'C:\Users\Kasma\Desktop\Kasma_Programming_Practice\Python\Get_Iranian_Bank_Data\Ready_To_Run\chromedriver.exe')
 
 # Initialize the WebDriver using the Service
 driver = webdriver.Chrome(service=service)

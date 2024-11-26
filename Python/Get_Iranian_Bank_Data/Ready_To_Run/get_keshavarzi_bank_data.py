@@ -13,7 +13,7 @@ import pandas as pd
 import time
 
 # Specify the path to your webdriver
-service = Service(r'C:\Users\Kasma\Desktop\Kasma_Programming_Practice\Python\chromedriver.exe')
+service = Service(r'C:\Users\Kasma\Desktop\Kasma_Programming_Practice\Python\Get_Iranian_Bank_Data\Ready_To_Run\chromedriver.exe')
 
 # Initialize the WebDriver using the Service
 driver = webdriver.Chrome(service=service)
@@ -45,52 +45,6 @@ try:
         headers.append(headerTitels[i].text)
 
     headersDone = 0
-
-    # wait = WebDriverWait(driver, 10)  
-    # wait.until(EC.presence_of_element_located((By.ID, 'branchGrid')))
-
-    # branchGrid = driver.find_element(By.ID, 'branchGrid')
-    # contentGrid = branchGrid.find_element(By.CLASS_NAME, 'k-grid-content')
-    # contentTable = contentGrid.find_element(By.TAG_NAME, 'table')
-    # contentTbody = contentTable.find_element(By.TAG_NAME, 'tbody')
-    # contentRows = contentTbody.find_elements(By.TAG_NAME, 'tr')
-
-    # for j in range(len(contentRows)):
-        
-    #     rowData =[]
-
-    #     if j == 2 :
-    #         elem = driver.find_element(By.TAG_NAME, "html")
-    #         elem.send_keys(Keys.END)
-        
-    #     contentColumns = contentRows[j].find_elements(By.TAG_NAME, 'td')
-        
-    #     for k in range(len(contentColumns))[1:]:
-    #         rowData.append(contentColumns[k].text)
-        
-    #     contentColumns[0].click()
-    #     time.sleep(3)
-    #     detailCells = contentTbody.find_elements(By.CLASS_NAME, 'k-detail-cell')
-    #     for l in range(len(detailCells)):
-    #         if l == (len(detailCells)-1):
-    #             # print(detailCells[l].text)
-    #             detailRows = detailCells[l].find_elements(By.CLASS_NAME, 'row')
-    #             for m in range(len(detailRows)):
-    #                 detailRowDivs = detailRows[m].find_elements(By.TAG_NAME, 'div')
-    #                 for n in range(len(detailRowDivs)):
-    #                     if headersDone == 0 :
-    #                         smallTag = detailRowDivs[n].find_element(By.TAG_NAME, 'small')
-    #                         headers.append(smallTag.text)
-    #                         headersDone =+1
-    #                     inputTag = detailRowDivs[n].find_element(By.TAG_NAME, 'input')
-    #                     rowData.append(inputTag.get_attribute('value'))
-        
-    #     print(headers)
-    #     print(rowData)
-    #     time.sleep(3)
-    #     contentColumns[0].click()
-    #     time.sleep(3)
-
     
     while True:
         try:
