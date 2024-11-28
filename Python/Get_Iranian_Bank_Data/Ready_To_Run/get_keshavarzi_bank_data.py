@@ -8,12 +8,17 @@ from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 
-
 import pandas as pd
 import time
+import sys
+
+config_directory = r'C:\Users\Kasma\Desktop\Kasma_Programming_Practice\Python\Get_Iranian_Bank_Data'
+sys.path.append(config_directory)
+
+from config import CHROMEDRIVER_PATH
 
 # Specify the path to your webdriver
-service = Service(r'C:\Users\Kasma\Desktop\Kasma_Programming_Practice\Python\Get_Iranian_Bank_Data\Ready_To_Run\chromedriver.exe')
+service = Service(CHROMEDRIVER_PATH)
 
 # Initialize the WebDriver using the Service
 driver = webdriver.Chrome(service=service)
@@ -159,13 +164,13 @@ try:
             break  # Exit the loop if any unexpected error occurs
     
 
-    df = pd.DataFrame(data)
+    # df = pd.DataFrame(data)
     # df.columns = ['Column1', 'Column2', 'Column3']  # Replace with actual column names as needed
-    df.to_excel('keshavarzi_bank_data.xlsx', index=False)
+    # df.to_excel('keshavarzi_bank_data.xlsx', index=False)
 
     # # Create a DataFrame and save to Excel
-    df_headers = pd.DataFrame(headers)  # Use the headers as columns
-    df_headers.to_excel('keshavarzi_headers.xlsx', index=False)
+    # df_headers = pd.DataFrame(headers)  # Use the headers as columns
+    # df_headers.to_excel('keshavarzi_headers.xlsx', index=False)
 
     df_branches = pd.DataFrame(data, columns=headers)  # Use the headers as columns
     df_branches.to_excel('keshavarzi_bank_branches.xlsx', index=False)

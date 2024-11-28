@@ -4,11 +4,18 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select, WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import StaleElementReferenceException  # Import here
+
 import pandas as pd
 import time
+import sys
+
+config_directory = r'C:\Users\Kasma\Desktop\Kasma_Programming_Practice\Python\Get_Iranian_Bank_Data'
+sys.path.append(config_directory)
+
+from config import CHROMEDRIVER_PATH
 
 # Specify the path to your webdriver
-service = Service(r'C:\Users\Kasma\Desktop\Kasma_Programming_Practice\Python\Get_Iranian_Bank_Data\Ready_To_Run\chromedriver.exe')
+service = Service(CHROMEDRIVER_PATH)
 
 # Initialize the WebDriver using the Service
 driver = webdriver.Chrome(service=service)
