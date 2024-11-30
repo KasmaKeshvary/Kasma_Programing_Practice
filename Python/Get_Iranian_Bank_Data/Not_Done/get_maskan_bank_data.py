@@ -16,12 +16,12 @@ config_directory = r'C:\Users\Kasma\Desktop\Kasma_Programming_Practice\Python\Ge
 sys.path.append(config_directory)
 
 from config import CHROMEDRIVER_PATH
-from config import TARGET_DIRECTORY
+from config import EXCEL_TARGET_DIRECTORY
 
 # Set Chrome options to specify download location and behavior 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option('prefs', {
-    'download.default_directory': TARGET_DIRECTORY,  # Set the default download directory
+    'download.default_directory': EXCEL_TARGET_DIRECTORY,  # Set the default download directory
     'download.prompt_for_download': False,           # Disable prompt for download
     'download.directory_upgrade': True,               # Allow directory upgrade
     'safebrowsing.enabled': True                       # Enable safe browsing
@@ -58,13 +58,13 @@ try:
     # start_time = time.time()
 
     # while (time.time() - start_time) < download_wait_time:
-    #     if any(fname.endswith(('.xls', '.xlsx')) for fname in os.listdir(TARGET_DIRECTORY)):
+    #     if any(fname.endswith(('.xls', '.xlsx')) for fname in os.listdir(EXCEL_TARGET_DIRECTORY)):
     #         break
     #     time.sleep(1)
 
     # # Check if any file containing 'BMIUnits' was downloaded
     # found_file = None
-    # for filename in os.listdir(TARGET_DIRECTORY):
+    # for filename in os.listdir(EXCEL_TARGET_DIRECTORY):
     #     if name_condition in filename and filename.endswith(('.xls', '.xlsx')):
     #         found_file = filename
     #         print(f'Found downloaded file: {found_file}')
@@ -72,8 +72,8 @@ try:
 
     # # If the file was found, rename it
     # if found_file:
-    #     old_file_path = os.path.join(TARGET_DIRECTORY, found_file)
-    #     new_file_path = os.path.join(TARGET_DIRECTORY, new_file_name)
+    #     old_file_path = os.path.join(EXCEL_TARGET_DIRECTORY, found_file)
+    #     new_file_path = os.path.join(EXCEL_TARGET_DIRECTORY, new_file_name)
     #     os.rename(old_file_path, new_file_path)
     #     print(f'Renamed downloaded file to: {new_file_name}')
 

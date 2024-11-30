@@ -13,6 +13,7 @@ config_directory = r'C:\Users\Kasma\Desktop\Kasma_Programming_Practice\Python\Ge
 sys.path.append(config_directory)
 
 from config import CHROMEDRIVER_PATH
+from config import EXCEL_TARGET_DIRECTORY
 
 # Specify the path to your webdriver
 service = Service(CHROMEDRIVER_PATH)
@@ -82,7 +83,15 @@ try:
     # df_headers.to_excel('branch_data_headers.xlsx', index=False)
 
     df_branches = pd.DataFrame(data, columns=headers)  # Use the headers as columns
-    df_branches.to_excel('mehreiranian_bank_branches.xlsx', index=False)
+    
+    # Ensure there's a trailing backslash
+    if not EXCEL_TARGET_DIRECTORY.endswith('\\'):
+        EXCEL_TARGET_DIRECTORY += '\\'
+
+    # Define the full path for the Excel file
+    excel_file_path = f"{EXCEL_TARGET_DIRECTORY}\\mehreiranian_bank_branches_data.xlsx"
+
+    df_branches.to_excel(excel_file_path, index=False)
 
 finally:
     # Close the driver

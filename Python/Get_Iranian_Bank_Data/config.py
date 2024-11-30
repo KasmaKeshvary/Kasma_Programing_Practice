@@ -1,2 +1,2 @@
 CHROMEDRIVER_PATH = r'C:\Users\Kasma\Desktop\Kasma_Programming_Practice\Python\Get_Iranian_Bank_Data\Chrome_Driver\chromedriver.exe'
-TARGET_DIRECTORY = r'C:\Users\Kasma\Desktop\Kasma_Programming_Practice\Python\Get_Iranian_Bank_Data\Excel_Files_Of_Iranian_Banks_Branches'  # Change this to your desired target location
+EXCEL_TARGET_DIRECTORY = r'C:\Users\Kasma\Desktop\Kasma_Programming_Practice\Python\Get_Iranian_Bank_Data\Excel_Files_Of_Iranian_Banks_Branches'
