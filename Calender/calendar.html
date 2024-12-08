@@ -4,15 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تقویم ایرانی</title>
-    <link rel="stylesheet" href="calendar.css">
+    <link rel="stylesheet" href="CSS/Fonts/css/all.min.css">
+    <link rel="stylesheet" href="CSS/bootstrap4.all.min.css">
+    <link rel="stylesheet" href="CSS/calendar.css">
 </head>
 <body>
-    <div class="calendar-container">
-        <select id="monthSelector"></select>
-        <div id="calendar"></div>
+    <div class="calendarContainer">
+        <div class="calendarHeader">
+            <button id="previousMonth">
+                <i class="fas fa-arrow-right"></i>
+                <span>ماه قبل</span>
+            </button>
+            <div id="dateData"></div>
+            <select id="monthSelector"></select>
+            <select id="yearSelector"></select>
+            <button id="nextMonth">
+                <span>ماه بعد</span>
+                <i class="fas fa-arrow-left"></i>
+            </button>
+        </div>
+        <div id="monthData"></div>
+        <div id="calendar" class="calendar"></div>
     </div>
 
-    <!-- <script src="calendarData.js"></script> -->
-    <script src="calendar.js"></script>
+    <script src="JS/calendarData.js"></script>
+    <script src="JS/calendar.js"></script>
 </body>
 </html>

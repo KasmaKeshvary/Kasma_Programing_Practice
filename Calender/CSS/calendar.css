@@ -1,0 +1,137 @@
+@font-face {
+    font-family: 'iranyekan';
+    src: url('Fonts/iranyekan/Qs_Iranyekan\ medium.ttf') format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family:  'iranyekan';
+    text-align: center;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 20px;
+    direction: rtl;
+}
+
+.calendarContainer {
+    width: 35%;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.calendarHeader{
+    padding: 0px 0px 10px 0px;
+    display: flex;
+    justify-content: space-around;
+}
+
+select{
+    font-family:  'iranyekan';
+    border-radius: 4px;
+    border: none;
+}
+
+#dateData{
+    color: #d04514;
+}
+
+#nextMonth , #previousMonth{
+    font-family:  'iranyekan';
+    background-color: white;
+    border: none;
+    width: 14%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#nextMonth i, #previousMonth i{
+    color: #d04514;
+}
+
+#nextMonth span, #previousMonth span{
+    color: #4c4c4c;
+    font-size: 10px;
+}
+
+.calendar{
+    width: 100%;
+}
+
+.daysOfWeek{
+    background-color: #555;
+    color: white;
+    border-radius: 4px;
+    width: 100%;
+    padding: 3px 0px 8px 0px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 13px;
+}
+
+.datesOfWeeks{
+    width: 100%;
+}
+
+.eachWeek{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.eachDate{
+    height: 50px;
+    width: 100%;
+    margin: 2px;
+    border-radius: 4px;
+    color: #4c4c4c;
+    cursor: pointer; 
+}
+
+.iranDate{
+    height: 30px;
+    width: 100%;
+    padding-top: 3px;
+    font-weight: bold ;
+    font-size: 22px ;
+}
+
+.otherDates{
+    height: 10px;
+    width: 100%;
+    display: flex;
+    font-size: 10px;
+}
+
+.gregorian{
+    width: 50%;
+    height: 10px;
+}
+
+.hijri{
+    width: 50%;
+    height: 10px;
+}
+
+.today{
+    background-color: #6cbd77;
+}
+
+.pointed{
+    background-color: #dfdfdf;
+}
+
+.friday {
+    height: 50px;
+    width: 100%;
+    margin: 2px;
+    border-radius: 4px;
+    color: rgb(231, 6, 6);
+    cursor: pointer;
+}
+
