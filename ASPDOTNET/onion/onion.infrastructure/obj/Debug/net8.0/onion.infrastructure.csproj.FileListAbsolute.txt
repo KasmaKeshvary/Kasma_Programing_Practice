@@ -1,0 +1,12 @@
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.infrastructure\bin\Debug\net8.0\onion.infrastructure.deps.json
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.infrastructure\bin\Debug\net8.0\onion.infrastructure.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.infrastructure\bin\Debug\net8.0\onion.infrastructure.pdb
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.infrastructure\obj\Debug\net8.0\onion.infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.infrastructure\obj\Debug\net8.0\onion.infrastructure.AssemblyInfoInputs.cache
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.infrastructure\obj\Debug\net8.0\onion.infrastructure.AssemblyInfo.cs
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.infrastructure\obj\Debug\net8.0\onion.infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.infrastructure\obj\Debug\net8.0\onion.infrastructure.sourcelink.json
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.infrastructure\obj\Debug\net8.0\onion.infrastructure.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.infrastructure\obj\Debug\net8.0\refint\onion.infrastructure.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.infrastructure\obj\Debug\net8.0\onion.infrastructure.pdb
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.infrastructure\obj\Debug\net8.0\ref\onion.infrastructure.dll

@@ -1,0 +1,12 @@
+Ant 1
+Rabbit 2
+Maus 2
+Cat 3
+Dog 4
+Wolf 5
+Gorilla 9
+Lion 6
+Tiger 7
+Bear 8
+Elephant 9
+Whale 10

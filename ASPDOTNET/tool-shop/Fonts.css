@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'BKood';
+    src: url('Fonts');
+    src: local('BKoodakBold'),
+    local('BKoodakBold-Regular'), 
+    url('Fonts/BKoodakBold.eot') format('embedded-opentype'),
+    url('Fonts/BKoodakBold.woff') format('woff'),
+    url('Fonts/BKoodakBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: 'BHom';
+    src: url('Fonts');
+    src: local('BHoma'),
+    local('BHoma-Regular'), 
+    url('Fonts/BHoma.eot') format('embedded-opentype'),
+    url('Fonts/BHoma.woff') format('woff'),
+    url('Fonts/BHoma.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

@@ -1,0 +1,12 @@
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.application\bin\Debug\net8.0\onion.application.deps.json
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.application\bin\Debug\net8.0\onion.application.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.application\bin\Debug\net8.0\onion.application.pdb
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.application\obj\Debug\net8.0\onion.application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.application\obj\Debug\net8.0\onion.application.AssemblyInfoInputs.cache
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.application\obj\Debug\net8.0\onion.application.AssemblyInfo.cs
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.application\obj\Debug\net8.0\onion.application.csproj.CoreCompileInputs.cache
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.application\obj\Debug\net8.0\onion.application.sourcelink.json
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.application\obj\Debug\net8.0\onion.application.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.application\obj\Debug\net8.0\refint\onion.application.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.application\obj\Debug\net8.0\onion.application.pdb
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\onion\onion.application\obj\Debug\net8.0\ref\onion.application.dll

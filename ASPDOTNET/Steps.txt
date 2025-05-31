@@ -1,0 +1,21 @@
+ Your ASP.NET Web API Project Progress
+Set up your environment
+
+Installed .NET SDK + VS Code extensions (C#, REST Client).
+
+Created a new Web API project
+
+Ran dotnet new webapi -n MyFirstApi.
+
+Ran the API successfully
+
+Tested GET /weatherforecast (works!).
+
+Added a POST endpoint
+
+Created DataController.cs to handle POST /api/data.
+
+Prepared the requests.rest file
+
+Ready to test the POST request when you return!
+

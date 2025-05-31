@@ -1,0 +1,22 @@
+### GET Weather (original endpoint)
+GET http://localhost:5026/weatherforecast
+
+### POST Data (new endpoint)
+POST http://localhost:5026/api/data
+Content-Type: application/json
+
+{
+    "name": "Kasma",
+    "age": 25
+}
+
+### POST cart (new endpoint)
+
+POST http://localhost:5026/api/cart/add
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "Laptop",
+    "price": 999.99
+}
