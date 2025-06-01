@@ -149,8 +149,37 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Components.Forms;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using Microsoft.Data.SqlClient; 
+using Microsoft.AspNetCore.Builder;
+
 
 #endregion
+
+#region usingSqlServer
+
+Console.WriteLine("در حال آزمایش اتصال به SQL Server...");
+
+var connectionString = "Server=DESKTOP-VNKT76F;Integrated Security=true;TrustServerCertificate=true;";
+
+try
+{
+    using (var connection = new SqlConnection(connectionString))
+    {
+        connection.Open();
+        Console.WriteLine("✅ اتصال موفق به SQL Server!");
+        Console.WriteLine($"سرور: {connection.DataSource}");
+        Console.WriteLine($"نسخه: {connection.ServerVersion}");
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine("❌ خطا در اتصال:");
+    Console.WriteLine(ex.Message);
+}
+
+#endregion
+
 
 namespace HelloWord
 {
@@ -166,13 +195,13 @@ namespace HelloWord
             // number = 10;
 
             // int kasmaAge = 36, shirinAge = 32;
-            
+
             // Console.WriteLine("kamas's Age:"+kasmaAge);
             // Console.WriteLine("shirin's Age:"+shirinAge);
 
             // kasmaAge ++;
             // Console.WriteLine("kamas's Age After one year:"+kasmaAge);
-            
+
             // shirinAge = shirinAge + 1;
             // Console.WriteLine("shirin's Age After one year:"+shirinAge);
 
@@ -186,7 +215,7 @@ namespace HelloWord
             #endregion
 
             #region Conditinal Code
-            
+
             // int thisYear = 1400;
 
             // Console.WriteLine("enter your year:");
@@ -210,7 +239,7 @@ namespace HelloWord
             //     Console.WriteLine("We are in the future");
             // }
 
-            
+
             // string someonesName ;
             // bool shouldContinue = true;
 
@@ -219,7 +248,7 @@ namespace HelloWord
             //     Console.WriteLine($"Write a name:"); 
 
             //     someonesName = Console.ReadLine() ?? string.Empty;
-                
+
             //     switch (someonesName)
             //     {
             //         case "peyman":
@@ -252,7 +281,7 @@ namespace HelloWord
             #endregion
 
             #region Loop Code
-            
+
             // int hopNumber = 6;
 
             // for (int i = 0; i <= 100; i++)
@@ -263,11 +292,11 @@ namespace HelloWord
 
             // int numberOfFloor = 10;
             // int numberOfParkSpotINEachFloor = 20;
-            
+
             // for (var i = 1; i <= numberOfFloor; i++)
             // {
             //     Console.WriteLine($"Floor: {i}");
-                
+
             //     for (var j = 1; j <= numberOfParkSpotINEachFloor; j++)
             //     {
             //         Console.WriteLine($"car place number: {i}_{j}");
@@ -280,7 +309,7 @@ namespace HelloWord
             // {
             //     Console.WriteLine(someNum);
             //     Console.WriteLine(new Random().Next(0,100));
-                
+
             //     someNum --;
             // }
 
@@ -288,28 +317,28 @@ namespace HelloWord
             // int randomNum = new Random().Next(0,100);
             // bool guessCondition = true ;
 
-            
+
             // while(guessCondition)
             // {
             //     // Console.WriteLine($"enter your guess as a number:");
             //     // int guessNum = int.Parse(Console.ReadLine() ?? string.Empty);
 
-                // Console.WriteLine("Enter your guess (0-99):");
-                // string input = Console.ReadLine() ?? string.Empty;
+            // Console.WriteLine("Enter your guess (0-99):");
+            // string input = Console.ReadLine() ?? string.Empty;
 
-                // // Check for empty input
-                // if (string.IsNullOrWhiteSpace(input))
-                // {
-                //     Console.WriteLine("You didn't enter anything. Please enter a number.");
-                //     continue;
-                // }
+            // // Check for empty input
+            // if (string.IsNullOrWhiteSpace(input))
+            // {
+            //     Console.WriteLine("You didn't enter anything. Please enter a number.");
+            //     continue;
+            // }
 
-                // // Try to parse the number
-                // if (!int.TryParse(input, out int guessNum))
-                // {
-                //     Console.WriteLine("Invalid input. Please enter a valid number.");
-                //     continue;
-                // }
+            // // Try to parse the number
+            // if (!int.TryParse(input, out int guessNum))
+            // {
+            //     Console.WriteLine("Invalid input. Please enter a valid number.");
+            //     continue;
+            // }
 
             //     if (guessNum < randomNum)
             //     {
@@ -332,9 +361,9 @@ namespace HelloWord
             // }
 
             #endregion
-            
+
             #region Rock Papper Sciccors
-            
+
             // // Define the array
             // string[] choices = ["Rock", "Paper", "Scissors"];
             // string userChoice = "";
@@ -346,7 +375,7 @@ namespace HelloWord
 
             // while (userScore<winScore && computerScore<winScore)
             // {
-                
+
             //     int randomIndex = new Random().Next(0,choices.Length);
             //     // Console.WriteLine(randomIndex);
             //     computerChoice = choices[randomIndex];
@@ -379,10 +408,10 @@ namespace HelloWord
             //         }
 
             //     }
-                
-                
+
+
             //     Console.WriteLine($"computerChoice: {computerChoice} , userChoice: {userChoice}");
-                
+
             //     switch (computerChoice)
             //     {
             //         case "Rock":
@@ -426,7 +455,7 @@ namespace HelloWord
             //     Console.WriteLine($"the winner is computer :(( ");
 
             #endregion
-            
+
             #region Array
 
             // string[] sample = new string[5];
@@ -446,7 +475,7 @@ namespace HelloWord
             #endregion
 
             #region Plindrome Game
-            
+
             // string userWord = "";
             // bool isString = true;
             // bool isPlindrome = true;
@@ -487,22 +516,22 @@ namespace HelloWord
             //             break;
             //         }
             //     }
-                
+
             //     if(isPlindrome == true) 
             //     {
             //         score++;
             //         Console.WriteLine($"Your word is Plindrome and your score is {score}");
             //     }
             // }
-            
+
             #endregion
 
             #region using car class
-            
+
             // Car car1 = new Car(900,"Benz");
-            
+
             // Console.WriteLine(car1.IntroduceYourself());
-            
+
             // Car car2 = new Car(1995,"Pride");
             // Console.WriteLine(car2.IntroduceYourself());
 
@@ -523,13 +552,13 @@ namespace HelloWord
             //     Console.WriteLine($"{ValidSecondNumber.Error}");   
             // else
             //     SecondNumber = ValidSecondNumber.Number;
-            
+
             // Console.WriteLine($"first number is {FirstNumber} , second number is {SecondNumber}");
 
             // string result = CompareNumber(FirstNumber,SecondNumber);
             // Console.WriteLine($"{result}");
-            
-            #endregion 
+
+            #endregion
 
             #region Properties
 
@@ -558,205 +587,197 @@ namespace HelloWord
 
             #region Animal Game
 
-            var db = new AppDataBase();
-            var fighters = db.GetFighters();
+            // var db = new AppDataBase();
+            // var fighters = db.GetFighters();
 
-            // for (var i = 0; i < fighters.Length; i++)
+            // // for (var i = 0; i < fighters.Length; i++)
+            // // {
+            // //     fighters[i].Introduce();
+            // // }
+
+            // int score = 0;
+
+            // int userChoice = 0;
+
+            // bool isContinue = true;
+
+            // while (isContinue)
             // {
-            //     fighters[i].Introduce();
+            //     Fighter fighter1 = fighters[new Random().Next(0, fighters.Length)];
+            //     Fighter fighter2 = fighters[new Random().Next(0, fighters.Length)];
+            //     Fighter fighter3 = fighters[new Random().Next(0, fighters.Length)];
+            //     Fighter fighter4 = fighters[new Random().Next(0, fighters.Length)];
+
+            //     Team team1 = new Team(fighter1, fighter2);
+            //     Team team2 = new Team(fighter3, fighter4);
+
+            //     int winnerTeam = 0;
+
+            //     if (team1.TeamPower() > team2.TeamPower())
+            //         winnerTeam = 1;
+            //     else
+            //         winnerTeam = 2;
+
+
+
+            //     Console.WriteLine($"Guess which team wins");
+
+            //     Console.WriteLine($"Team 1 is");
+            //     Console.WriteLine($"{fighter1.Name}");
+            //     Console.WriteLine($"{fighter2.Name}");
+            //     Console.WriteLine($"Team 2 is");
+            //     Console.WriteLine($"{fighter3.Name}");
+            //     Console.WriteLine($"{fighter4.Name}");
+
+            //     var ValidNumber = WhileCheckingNumber(3, "Enter the number of winner team:");
+
+            //     if (!ValidNumber.IsValid)
+            //     {
+            //         Console.WriteLine($"{ValidNumber.Error}");
+            //         continue;
+            //     }
+            //     else if (ValidNumber.IsValid && ValidNumber.Number != 1 && ValidNumber.Number != 2)
+            //     {
+            //         Console.WriteLine($"you have to enter 1 or 2");
+            //         continue;
+            //     }
+            //     else
+            //     {
+            //         userChoice = ValidNumber.Number;
+
+            //         if (userChoice == winnerTeam)
+            //         {
+            //             score++;
+            //             Console.WriteLine($"You guess it right and win this hand. Your score is {score}");
+            //         }
+            //         else if (winnerTeam == 0)
+            //         {
+            //             Console.WriteLine($"The power of teams are equal");
+            //         }
+            //         else
+            //         {
+            //             score--;
+            //             Console.WriteLine($"Your guess is worng and you lose a score. Your score is {score}");
+            //         }
+            //     }
+
+
+            //     Console.WriteLine("Do you want to continue? (Y/N)");
+            //     string? userContinued = Console.ReadLine()?.Trim().ToUpper(); // Ensure uppercase input
+
+            //     if (userContinued == "Y")
+            //     {
+            //         Console.WriteLine("Ok Let's play more");
+            //         // Add logic for when the user selects Yes
+            //     }
+            //     else if (userContinued == "N")
+            //     {
+            //         Console.WriteLine("Ok. You don't want to play anymore.");
+            //         isContinue = false;
+            //     }
+            //     else
+            //     {
+            //         Console.WriteLine("Invalid input. Please enter Y or N.");
+            //     }
+
             // }
-            
-            int score = 0;
-
-            int userChoice = 0;
-
-            bool isContinue = true;
-
-            while (isContinue)
-            {
-                Fighter fighter1 = fighters[new Random().Next(0, fighters.Length)];
-                Fighter fighter2 = fighters[new Random().Next(0, fighters.Length)];
-                Fighter fighter3 = fighters[new Random().Next(0, fighters.Length)];
-                Fighter fighter4 = fighters[new Random().Next(0, fighters.Length)];
-
-                Team team1 = new Team(fighter1, fighter2);
-                Team team2 = new Team(fighter3, fighter4);
-
-                int winnerTeam = 0;
-
-                if (team1.TeamPower() > team2.TeamPower())
-                    winnerTeam = 1;
-                else
-                    winnerTeam = 2;
-
-
-
-                Console.WriteLine($"Guess which team wins");
-
-                Console.WriteLine($"Team 1 is");
-                Console.WriteLine($"{fighter1.Name}");
-                Console.WriteLine($"{fighter2.Name}");
-                Console.WriteLine($"Team 2 is");
-                Console.WriteLine($"{fighter3.Name}");
-                Console.WriteLine($"{fighter4.Name}");
-
-                var ValidNumber = WhileCheckingNumber(3, "Enter the number of winner team:");
-
-                if (!ValidNumber.IsValid)
-                {
-                    Console.WriteLine($"{ValidNumber.Error}");
-                    continue;
-                }
-                else if (ValidNumber.IsValid && ValidNumber.Number != 1 && ValidNumber.Number != 2)
-                {
-                    Console.WriteLine($"you have to enter 1 or 2");
-                    continue;
-                }
-                else
-                {
-                    userChoice = ValidNumber.Number;
-
-                    if (userChoice == winnerTeam)
-                    {
-                        score++;
-                        Console.WriteLine($"You guess it right and win this hand. Your score is {score}");
-                    }
-                    else if (winnerTeam == 0)
-                    {
-                        Console.WriteLine($"The power of teams are equal");
-                    }
-                    else
-                    {
-                        score--;
-                        Console.WriteLine($"Your guess is worng and you lose a score. Your score is {score}");
-                    }
-                }
-                    
-                
-                Console.WriteLine("Do you want to continue? (Y/N)");
-                string? userContinued = Console.ReadLine()?.Trim().ToUpper(); // Ensure uppercase input
-
-                if (userContinued == "Y")
-                {
-                    Console.WriteLine("Ok Let's play more");
-                    // Add logic for when the user selects Yes
-                }
-                else if (userContinued == "N")
-                {
-                    Console.WriteLine("Ok. You don't want to play anymore.");
-                    isContinue = false;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input. Please enter Y or N.");
-                }
-                
-            }
 
             #endregion
 
-                #region usingLinq
+            #region usingLinq
+            // // int[] scores = new int[2];
+            // // scores[0] = 10;
+            // // scores[1] = 20;
+            // // scores[2] = 30;
+            // List<int> scores = new List<int>(); 
+            // scores.Add(10);
+            // scores.Add(20);
+            // scores.Add(30);
+            // scores.Add(40);
+            // scores.Add(50);
+            // scores.Add(40);
+            // scores.Add(30);
+            // Console.WriteLine($"the average is : {scores.Average()}");
+            // Console.WriteLine($"the last number is : {scores.Last()}");
+            // scores.ForEach(score => Console.WriteLine(score));
+            // List<int> othernumber = new List<int>();
+            // othernumber = scores.Where(a => a>20 && a<50).ToList();
+            // // for (var i = 0; i < scores.Count; i++)
+            // // {
+            // //     Console.WriteLine($"{scores[i]}");
+            // // }
+            // Console.WriteLine(string.Join(", ", othernumber));
 
-                // // int[] scores = new int[2];
+            #endregion
 
-                // // scores[0] = 10;
-                // // scores[1] = 20;
-                // // scores[2] = 30;
+            #region Enum
 
-                // List<int> scores = new List<int>(); 
+            // Console.WriteLine($"Select your gender:");
+            // Console.WriteLine($"100.Unspecified");
+            // Console.WriteLine($"200.Male");
+            // Console.WriteLine($"300.Female");
 
-                // scores.Add(10);
-                // scores.Add(20);
-                // scores.Add(30);
-                // scores.Add(40);
-                // scores.Add(50);
-                // scores.Add(40);
-                // scores.Add(30);
+            // var userInput = Console.ReadLine();
+            // int userChoice = 0;
 
-                // Console.WriteLine($"the average is : {scores.Average()}");
-                // Console.WriteLine($"the last number is : {scores.Last()}");
-                // scores.ForEach(score => Console.WriteLine(score));
+            // try
+            // {
+            //     userChoice = Convert.ToInt32(userInput);
+            // }
+            // catch (System.Exception)
+            // {
+            //     Console.WriteLine($"you didn't enter a number");
+            //     // throw;
+            // }
 
-                // List<int> othernumber = new List<int>();
-
-                // othernumber = scores.Where(a => a>20 && a<50).ToList();
-
-                // // for (var i = 0; i < scores.Count; i++)
-                // // {
-                // //     Console.WriteLine($"{scores[i]}");
-                // // }
-
-                // Console.WriteLine(string.Join(", ", othernumber));
-
-                #endregion
-
-                #region Enum
-
-                // Console.WriteLine($"Select your gender:");
-                // Console.WriteLine($"100.Unspecified");
-                // Console.WriteLine($"200.Male");
-                // Console.WriteLine($"300.Female");
-
-                // var userInput = Console.ReadLine();
-                // int userChoice = 0;
-
-                // try
-                // {
-                //     userChoice = Convert.ToInt32(userInput);
-                // }
-                // catch (System.Exception)
-                // {
-                //     Console.WriteLine($"you didn't enter a number");
-                //     // throw;
-                // }
-
-                // // int userChoice = int.Parse(userInput ?? string.Empty);
+            // // int userChoice = int.Parse(userInput ?? string.Empty);
 
 
 
-                // Gender userGender = (Gender) userChoice;
+            // Gender userGender = (Gender) userChoice;
 
-                // switch (userGender)
-                // {
-                //     case Gender.Unspecified:
-                //         Console.WriteLine($"You did not specified your gender");
-                //         break;
-                //     case Gender.Male:
-                //         Console.WriteLine($"You are male");
-                //         break;
-                //     case Gender.Female:
-                //         Console.WriteLine($"You are female");
-                //         break;
-                // }
+            // switch (userGender)
+            // {
+            //     case Gender.Unspecified:
+            //         Console.WriteLine($"You did not specified your gender");
+            //         break;
+            //     case Gender.Male:
+            //         Console.WriteLine($"You are male");
+            //         break;
+            //     case Gender.Female:
+            //         Console.WriteLine($"You are female");
+            //         break;
+            // }
 
 
-                #endregion
+            #endregion
 
-                #region Finishing App
-                Console.WriteLine("App coding is finished");
+
+            #region Finishing App
+            Console.WriteLine("App coding is finished");
             Console.WriteLine("GoodBye");
             #endregion
         }
 
         #region neededClasses
 
-        public static  bool IsValidString(string input)
+        public static bool IsValidString(string input)
         {
             return !Regex.IsMatch(input, @"\d"); // Returns true if no digits found
         }
 
-        public static string CompareNumber( int x, int y)
+        public static string CompareNumber(int x, int y)
         {
-            if (x>y) return "First number is greater";
-            else if (x<y) return "Second number is greater";
+            if (x > y) return "First number is greater";
+            else if (x < y) return "Second number is greater";
             else return "both of them are equal";
         }
 
-        public static (bool IsValid, int Number, string? Error) ValidateNumber (string input)
+        public static (bool IsValid, int Number, string? Error) ValidateNumber(string input)
         {
-            if(string.IsNullOrWhiteSpace(input)) return (false,0,"No input provided");
-            if(!int.TryParse(input, out int number)) return (false,0,"Invalid number format");
-            return(true,number,null);
+            if (string.IsNullOrWhiteSpace(input)) return (false, 0, "No input provided");
+            if (!int.TryParse(input, out int number)) return (false, 0, "Invalid number format");
+            return (true, number, null);
         }
 
         public static (bool IsValid, int Number, string? Error) WhileCheckingNumber(int repeatNumber, string enterMessage)
@@ -765,14 +786,14 @@ namespace HelloWord
             int repeated = 0;
             int outputNumber = 0;
 
-            while(isUnacceptable && repeated <= repeatNumber)
+            while (isUnacceptable && repeated <= repeatNumber)
             {
                 Console.WriteLine($"{enterMessage}");
-            
-                string inputString = Console.ReadLine() ?? string.Empty;
-                var validation = ValidateNumber(inputString); 
 
-                if(!validation.IsValid)
+                string inputString = Console.ReadLine() ?? string.Empty;
+                var validation = ValidateNumber(inputString);
+
+                if (!validation.IsValid)
                 {
                     Console.WriteLine(validation.Error);
                     repeated++;
@@ -783,10 +804,10 @@ namespace HelloWord
                 outputNumber = validation.Number;
             }
 
-            if(repeated >= repeatNumber && isUnacceptable)
-                return(false,0,$"In {repeatNumber} , try you didn't put the correct format"); 
+            if (repeated >= repeatNumber && isUnacceptable)
+                return (false, 0, $"In {repeatNumber} , try you didn't put the correct format");
             else
-                return(true,outputNumber,null);
+                return (true, outputNumber, null);
         }
 
         #endregion
