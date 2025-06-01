@@ -160,21 +160,44 @@ using Microsoft.AspNetCore.Builder;
 
 Console.WriteLine("در حال آزمایش اتصال به SQL Server...");
 
-var connectionString = "Server=DESKTOP-VNKT76F;Integrated Security=true;TrustServerCertificate=true;";
-
+var connectionString = "Server=DESKTOP-VNKT76F;Database=PhoneBookDB;Integrated Security=true;TrustServerCertificate=true;";
 try
 {
     using (var connection = new SqlConnection(connectionString))
     {
-        connection.Open();
-        Console.WriteLine("✅ اتصال موفق به SQL Server!");
-        Console.WriteLine($"سرور: {connection.DataSource}");
-        Console.WriteLine($"نسخه: {connection.ServerVersion}");
+        await connection.OpenAsync();
+        Console.WriteLine("✅ اتصال موفق به دیتابیس!");
+
+        // کوئری برای خواندن اولین رکورد
+        var query = "SELECT TOP 1 * FROM Users";
+        var command = new SqlCommand(query, connection);
+
+        using (var reader = await command.ExecuteReaderAsync())
+        {
+            if (await reader.ReadAsync())
+            {
+                Console.WriteLine("\nمشخصات کاربر:");
+                Console.WriteLine($"ID: {reader["Id"]}");
+                Console.WriteLine($"Username: {reader["Username"]}");
+                Console.WriteLine($"DisplayName: {reader["DisplayName"]}");
+                // سایر فیلدها...
+            }
+            else
+            {
+                Console.WriteLine("❌ هیچ کاربری در جدول وجود ندارد");
+            }
+        }
     }
+}
+catch (SqlException ex)
+{
+    Console.WriteLine("❌ خطای SQL:");
+    Console.WriteLine($"کد خطا: {ex.Number}");
+    Console.WriteLine(ex.Message);
 }
 catch (Exception ex)
 {
-    Console.WriteLine("❌ خطا در اتصال:");
+    Console.WriteLine("❌ خطای غیرمنتظره:");
     Console.WriteLine(ex.Message);
 }
 
