@@ -1,0 +1,55 @@
+@{
+    ViewData["Title"] = "PhoneBook";
+}
+
+@model PhoneBook.Core.Entities.User?
+
+
+
+<h1>Welcome to PhoneBook App!</h1>
+<h2>@ViewBag.Message</h2>
+<p>A simple MVC page with Onion Architecture.</p>
+
+<!-- Index.cshtml -->
+<form id="dataForm">
+    <input type="text" id="name" placeholder="نام را وارد کنید" required />
+    <input type="text" id="surname" placeholder="نام خانوادگی را وارد کنید" required />
+    <button type="button" id="submitBtn">ارسال</button>
+</form>
+<div id="result"></div>
+
+@if (Model != null)
+    {
+        <h1>مشخصات کاربر</h1>
+        <p><strong>ID:</strong> @Model.Id</p>
+        <p><strong>نام کاربری:</strong> @Model.Username</p>
+        <p><strong>نام نمایشی:</strong> @Model.DisplayName</p>
+    }
+    else
+    {
+        <h1>❌ هیچ کاربری یافت نشد</h1>
+    }
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $("#submitBtn").on("click", function () {
+        const payload = {
+            name: $("#name").val(),
+            surname: $("#surname").val()
+        };
+
+        $.ajax({
+            url: '/Home/ProcessData',
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(payload),
+            success: function (data) {
+                $("#result").html(data);
+            },
+            error: function () {
+                $("#result").html("خطا در ارسال داده به سرور.");
+            }
+        });
+    });
+</script>
