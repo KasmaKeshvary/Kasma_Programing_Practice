@@ -86,3 +86,4 @@ C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.
 C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\obj\Debug\net8.0\PhoneBook.Web.pdb
 C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\obj\Debug\net8.0\PhoneBook.Web.genruntimeconfig.cache
 C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\obj\Debug\net8.0\ref\PhoneBook.Web.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\bin\Debug\net8.0\PhoneBook.Web.staticwebassets.runtime.json

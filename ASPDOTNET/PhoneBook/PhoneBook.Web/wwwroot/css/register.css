@@ -1,0 +1,33 @@
+/* wwwroot/css/register.css */
+
+.register-container {
+    max-width: 320px;
+    margin: 40px auto; /* فاصله از بالای صفحه و قرارگیری در وسط عمودی نیست؛ این حالت از بالا تنظیم می‌شود */
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.register-container input {
+    width: 91%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.register-container button {
+    padding: 8px 12px;
+    border: none;
+    background: #007BFF;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.register-container .error {
+    color: red;
+    margin-top: 10px;
+}

@@ -8,6 +8,7 @@ builder.Services.AddScoped<UserService>();
 
 var app = builder.Build();
 
+app.UseStaticFiles();
 app.UseRouting();
 app.UseEndpoints(endpoints =>
 {

@@ -1,24 +1,21 @@
 @{
-    Layout = null;
+    ViewBag.Title = "ورود";
 }
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-    <meta charset="utf-8" />
-    <title>فرم ورود</title>
-</head>
-<body>
-    <h2>فرم ورود کاربر</h2>
+
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="~/css/login.css" />
+}
+
+<section class="login-container">
+    <h2>ورود کاربر</h2>
     <form asp-controller="Home" asp-action="Login" method="post">
-        <div>
-            <label for="username">نام کاربری:</label>
-            <input type="text" name="username" id="username" required />
-        </div>
-        <div>
-            <label for="password">رمز عبور:</label>
-            <input type="password" name="password" id="password" required />
-        </div>
+        <input type="text" name="username" placeholder="نام کاربری" required />
+        <input type="password" name="password" placeholder="رمز عبور" required />
         <button type="submit">ورود</button>
     </form>
-</body>
-</html>
+    @if (ViewBag.Error != null)
+    {
+        <p class="error">@ViewBag.Error</p>
+        <button onclick="location.href='@Url.Action("Register", "Home")'">ثبت‌ نام</button>
+    }
+</section>

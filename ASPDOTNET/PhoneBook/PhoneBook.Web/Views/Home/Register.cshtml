@@ -1,0 +1,27 @@
+@{
+    ViewBag.Title = "ثبت نام";
+}
+
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="~/css/register.css" />
+}
+
+<section class="register-container">
+    <h2>ثبت‌ نام</h2>
+    <form asp-controller="Home" asp-action="Register" method="post">
+        <input type="text" name="username" placeholder="نام کاربری" required />
+        <input type="password" name="password" placeholder="رمز عبور" required />
+        <input type="text" name="displayName" placeholder="نام نمایشی" required />
+        <button type="submit">ثبت‌ نام</button>
+    </form>
+</section>
+
+@if (TempData["RegistrationSuccess"] != null)
+{
+    @section Scripts {
+        <script>
+            showRegistrationModal();
+        </script>
+    }
+}
+    

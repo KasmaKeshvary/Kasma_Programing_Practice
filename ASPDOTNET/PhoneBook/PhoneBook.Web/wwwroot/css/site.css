@@ -1,0 +1,23 @@
+/* wwwroot/css/site.css */
+
+/* تنظیمات عمومی صفحه */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* تنظیمات Header : ارتفاع 20% از صفحه */
+header {
+    background: #007BFF;
+    color: #fff;
+    text-align: center;
+    height: 20vh; /* 20% از ارتفاع viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* سبک دهی به محتوا (این بخش تمام محتوای رندر شده از ویوها را در بر می‌گیرد) */
+.main-content {
+    padding: 20px;
+}

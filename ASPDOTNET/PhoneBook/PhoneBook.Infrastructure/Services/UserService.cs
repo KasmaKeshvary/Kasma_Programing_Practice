@@ -31,4 +31,30 @@ public class UserService
         }
         return null;
     }
+
+    // متد بررسی وجود کاربر با نام کاربری در پایگاه داده
+    public async Task<bool> CheckUserExistsAsync(string username)
+    {
+        using var connection = new SqlConnection(_connectionString);
+        await connection.OpenAsync();
+        var query = "SELECT COUNT(*) FROM Users WHERE Username = @username";
+        using var command = new SqlCommand(query, connection);
+        command.Parameters.AddWithValue("@username", username);
+        int count = (int)await command.ExecuteScalarAsync();
+        return count > 0;
+    }
+    
+    // متد ثبت کاربر جدید در پایگاه داده
+    public async Task RegisterUserAsync(string username, string password, string displayName)
+    {
+        using var connection = new SqlConnection(_connectionString);
+        await connection.OpenAsync();
+        var query = "INSERT INTO Users (Username, Password, DisplayName) VALUES (@username, @password, @displayName)";
+        using var command = new SqlCommand(query, connection);
+        command.Parameters.AddWithValue("@username", username);
+        command.Parameters.AddWithValue("@password", password); // در محیط واقعی کلمه عبور را هش کنید!
+        command.Parameters.AddWithValue("@displayName", displayName);
+        await command.ExecuteNonQueryAsync();
+    }
+
 }

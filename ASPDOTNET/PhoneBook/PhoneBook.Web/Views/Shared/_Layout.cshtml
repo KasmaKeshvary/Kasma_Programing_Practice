@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - دفترچه تلفن مشترک</title>
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/modal.css" />
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <header>
+        <h1>دفترچه تلفن مشترک</h1>
+    </header>
+    <div class="main-content">
+        @RenderBody()
+    </div>
+     <!-- Modal برای ثبت‌نام موفق -->
+    <div id="registrationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>ثبت‌نام موفق!</h2>
+            <p>ثبت‌نام شما با موفقیت انجام شد.</p>
+        </div>
+    </div>
+
+    <script src="~/js/registrationModal.js"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

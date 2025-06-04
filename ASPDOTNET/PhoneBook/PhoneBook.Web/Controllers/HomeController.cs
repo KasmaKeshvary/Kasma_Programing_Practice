@@ -1,45 +1,7 @@
-// using System.Text.Json;
-// using Microsoft.AspNetCore.Mvc;
-// using PhoneBook.Core.Entities;
-// using PhoneBook.Infrastructure.Services;
-
-// namespace PhoneBook.Web.Controllers;
-
-// public class HomeController : Controller
-// {
-
-//     [HttpPost]
-//     public IActionResult ProcessData([FromBody] JsonElement data)
-//     {
-//         // استخراج مقدار property "name" به روش JsonElement 
-//         string? name = data.GetProperty("name").GetString();
-//         string? surname = data.GetProperty("surname").GetString();
-
-//         return Content($"سلام {name}{surname}! از سمت سرور دریافت شد.");
-//     }
-
-//     // می‌توانید از DI (Dependency Injection) برای دریافت نمونه سرویس استفاده کنید.
-//     private readonly UserService _userService;
-
-//     // در این مثال به صورت مستقیم از سازنده استفاده کرده‌ایم؛ در پروژه‌های بزرگ توصیه می‌شود
-//     // سرویس‌ها در Startup/Program ثبت شوند.
-//     public HomeController(UserService userService)
-//     {
-//         _userService = userService;
-//     }
-
-//     // اکشن Index داده‌های کاربر را دریافت کرده و به ویو ارسال می‌کند.
-//     public async Task<IActionResult> Index()
-//     {
-//         User? user = await _userService.GetFirstUserAsync();
-//         return View(user);
-//     }
-// }
-
-
 using Microsoft.AspNetCore.Mvc;
 using PhoneBook.Infrastructure.Services;
 using PhoneBook.Core.Entities;
+using System.Threading.Tasks;
 
 namespace PhoneBook.Web.Controllers;
 
@@ -72,7 +34,38 @@ public class HomeController : Controller
         }
         else
         {
-            return Content("کاربری با این مشخصات وجود ندارد.");
+            // ارسال پیغام خطا به ویو ورود؛ می‌توانید این مورد را به ViewBag ارسال کنید
+            ViewBag.Error = "کاربری با این مشخصات وجود ندارد.";
+            return View(); // بازگردانی همان ویو Login با پیام خطا
         }
     }
+
+    // نمایش فرم ثبت‌نام (GET)
+    [HttpGet]
+    public IActionResult Register()
+    {
+        return View();
+    }
+
+    // پردازش ثبت‌نام (POST)
+    [HttpPost]
+    public async Task<IActionResult> Register(string username, string password, string displayName)
+    {
+        bool exists = await _userService.CheckUserExistsAsync(username);
+        if (exists)
+        {
+            ViewBag.Error = "این نام کاربری قبلاً ثبت شده است.";
+            return View();
+        }
+        else
+        {
+            await _userService.RegisterUserAsync(username, password, displayName);
+            TempData["RegistrationSuccess"] = true;
+            // در اینجا می‌توانید همان ویو ثبت‌نام را رندر کنید.
+            return RedirectToAction("Register");
+        }
+
+    }
+    
+
 }

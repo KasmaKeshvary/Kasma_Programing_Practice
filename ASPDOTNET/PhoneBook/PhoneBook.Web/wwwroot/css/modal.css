@@ -1,0 +1,36 @@
+/* استایل‌های modal */
+.modal {
+    display: none; /* به صورت پیش‌فرض مخفی است */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    bottom: 0; /* در پایین صفحه قرار می‌گیرد */
+    width: 100%;
+    background-color: rgba(0,0,0,0.4); /* زمینه نیمه شفاف */
+    padding: 20px 0;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+/* دکمه بستن (مثلاً ایکس) */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+}
