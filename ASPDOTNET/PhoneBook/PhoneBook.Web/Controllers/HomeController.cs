@@ -15,6 +15,12 @@ public class HomeController : Controller
         _userService = userService;
     }
 
+    [HttpGet]
+    public IActionResult Index(User user)
+    {
+        return View(user);
+    }
+
     // نمایش فرم ورود
     [HttpGet]
     public IActionResult Login()
@@ -29,8 +35,32 @@ public class HomeController : Controller
         var user = await _userService.ValidateUserAsync(username, password);
         if (user != null)
         {
-            // در اینجا می‌توانید عملیات احراز هویت و ایجاد کوکی را نیز انجام دهید
-            return Content($"خوش آمدید، {user.DisplayName}!");
+            // ثبت شناسه کاربر در Session
+            HttpContext.Session.SetString("IsAuthenticated", "true");
+            HttpContext.Session.SetString("DisplayName", user.DisplayName);
+
+            // استفاده از کوکی
+            // var claims = new List<Claim>
+            // {
+            //     new Claim(ClaimTypes.Name, user.DisplayName),
+            //     new Claim(ClaimTypes.Role, user.Username.ToLower() == "admin" ? "Admin" : "User")
+            // };
+
+            // var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            // var authProperties = new AuthenticationProperties
+            // {
+            //     // مدت تایید، یعنی کوکی پس از 1 روز منقضی خواهد شد
+            //     ExpiresUtc = DateTimeOffset.UtcNow.AddDays(1),
+            //     IsPersistent = true
+            // };
+
+            // await HttpContext.SignInAsync(
+            // CookieAuthenticationDefaults.AuthenticationScheme,
+            // new ClaimsPrincipal(claimsIdentity),
+            // authProperties);
+
+            // در صورتی که از مدل استفاده می‌کنید:
+            return RedirectToAction("Index", user);
         }
         else
         {
@@ -67,5 +97,14 @@ public class HomeController : Controller
 
     }
     
+    [HttpGet]
+    public IActionResult Logout()
+    {
+        HttpContext.Session.Clear();
+        // await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+        return RedirectToAction("Login");
+    }
+
 
 }

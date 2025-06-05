@@ -1,55 +1,35 @@
-@{
-    ViewData["Title"] = "PhoneBook";
-}
-
 @model PhoneBook.Core.Entities.User?
 
+@{
+    ViewData["Title"] = "PhoneBook";
+    ViewBag.Title = "صفحه اصلی";
+}
 
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="~/css/index.css" />
+}
 
-<h1>Welcome to PhoneBook App!</h1>
-<h2>@ViewBag.Message</h2>
-<p>A simple MVC page with Onion Architecture.</p>
+<!-- محتوای صفحه با استفاده از Flexbox تقسیم‌بندی شده -->
+<div class="content-wrapper">
+    <!-- ستون سمت چپ (۲۰٪ عرض) با سه منو -->
+    <div class="left-panel">
+        <h1>خوش آمدید، @(Model?.DisplayName ?? "کاربر عزیز")!</h1>
+        <div class="menu-item" id="displayList">نمایش لیست</div>
+        <div class="menu-item" id="search">جست و جو</div>
+        @if (Model != null && Model.Username.ToLower() == "admin")
+        {
+            <div class="menu-item" id="addPerson">اضافه کردن نفر</div>
+        }
+        <!-- دکمه خروج -->
+        <div class="menu-item" id="logout">خروج</div>
+    </div>
 
-<!-- Index.cshtml -->
-<form id="dataForm">
-    <input type="text" id="name" placeholder="نام را وارد کنید" required />
-    <input type="text" id="surname" placeholder="نام خانوادگی را وارد کنید" required />
-    <button type="button" id="submitBtn">ارسال</button>
-</form>
-<div id="result"></div>
+    <!-- ستون سمت راست (۸۰٪ عرض) که محتویات تغییر می‌کند -->
+    <div class="right-panel" id="mainSection">
+        <p style="text-align:center; padding:20px;">لطفاً یکی از گزینه‌های منو را انتخاب کنید.</p>
+    </div>
+</div>
 
-@if (Model != null)
-    {
-        <h1>مشخصات کاربر</h1>
-        <p><strong>ID:</strong> @Model.Id</p>
-        <p><strong>نام کاربری:</strong> @Model.Username</p>
-        <p><strong>نام نمایشی:</strong> @Model.DisplayName</p>
-    }
-    else
-    {
-        <h1>❌ هیچ کاربری یافت نشد</h1>
-    }
-
-
+<!-- اضافه کردن jQuery از CDN و اسکریپت برای تغییر محتویات بخش راست برحسب منوی کلیک‌شده -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $("#submitBtn").on("click", function () {
-        const payload = {
-            name: $("#name").val(),
-            surname: $("#surname").val()
-        };
-
-        $.ajax({
-            url: '/Home/ProcessData',
-            type: 'POST',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(payload),
-            success: function (data) {
-                $("#result").html(data);
-            },
-            error: function () {
-                $("#result").html("خطا در ارسال داده به سرور.");
-            }
-        });
-    });
-</script>
+<script src="~/js/index.js"></script>

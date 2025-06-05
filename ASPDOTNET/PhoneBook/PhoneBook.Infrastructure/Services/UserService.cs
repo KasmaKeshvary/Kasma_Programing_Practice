@@ -1,12 +1,22 @@
+using System;
+using System.Collections.Generic;
 using PhoneBook.Core.Entities;
 using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
+using PhoneBook.Core.Settings;
 
 namespace PhoneBook.Infrastructure.Services;
 
 public class UserService
 {
-    private readonly string _connectionString = "Server=DESKTOP-VNKT76F;Database=PhoneBookDB;Integrated Security=true;TrustServerCertificate=true;";
+    private readonly string _connectionString;
+
+    // دریافت رشته اتصال از طریق تنظیمات strongly typed که با IOptions تزریق می‌شود.
+    public UserService(IOptions<DatabaseSettings> options)
+    {
+        _connectionString = options.Value.DBString;
+    }
 
     public async Task<User?> ValidateUserAsync(string username, string password)
     {
@@ -43,7 +53,7 @@ public class UserService
         int count = (int)await command.ExecuteScalarAsync();
         return count > 0;
     }
-    
+
     // متد ثبت کاربر جدید در پایگاه داده
     public async Task RegisterUserAsync(string username, string password, string displayName)
     {

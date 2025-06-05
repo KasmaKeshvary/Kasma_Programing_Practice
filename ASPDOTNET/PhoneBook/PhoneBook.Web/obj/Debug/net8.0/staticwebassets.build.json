@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YvfwqeCGQciYQi9nxLIGKLvkz28fbkRRw5+2/15mOCM=",
+  "Hash": "OXK0fCLYwWw+tjqyrCX1A0sfWnwkh2WbotME2rNpsVU=",
   "Source": "PhoneBook.Web",
   "BasePath": "_content/PhoneBook.Web",
   "Mode": "Default",
@@ -16,6 +16,44 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Web\\wwwroot\\css\\contact.css",
+      "SourceId": "PhoneBook.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Web\\wwwroot\\",
+      "BasePath": "_content/PhoneBook.Web",
+      "RelativePath": "css/contact.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\contact.css"
+    },
+    {
+      "Identity": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Web\\wwwroot\\css\\index.css",
+      "SourceId": "PhoneBook.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Web\\wwwroot\\",
+      "BasePath": "_content/PhoneBook.Web",
+      "RelativePath": "css/index.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\index.css"
+    },
     {
       "Identity": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Web\\wwwroot\\css\\login.css",
       "SourceId": "PhoneBook.Web",
@@ -91,6 +129,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Web\\wwwroot\\js\\index.js",
+      "SourceId": "PhoneBook.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Web\\wwwroot\\",
+      "BasePath": "_content/PhoneBook.Web",
+      "RelativePath": "js/index.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\index.js"
     },
     {
       "Identity": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Web\\wwwroot\\js\\registrationModal.js",

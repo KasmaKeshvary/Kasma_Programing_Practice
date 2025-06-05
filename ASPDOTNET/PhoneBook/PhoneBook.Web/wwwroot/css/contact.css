@@ -1,0 +1,53 @@
+/* سبک جدول مخاطبین */
+table.contact-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* استایل سربرگ جدول */
+table.contact-table thead {
+    background-color: #007BFF; /* رنگ پس‌زمینه سربرگ */
+    color: white;
+}
+
+table.contact-table th,
+table.contact-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+/* تنظیم عرض ستون‌ها */
+table.contact-table th:nth-child(1),
+table.contact-table td:nth-child(1) {
+    width: 10%;
+}
+table.contact-table th:nth-child(2),
+table.contact-table td:nth-child(2),
+table.contact-table th:nth-child(3),
+table.contact-table td:nth-child(3),
+table.contact-table th:nth-child(4),
+table.contact-table td:nth-child(4) {
+    width: 20%;
+}
+table.contact-table th:nth-child(5),
+table.contact-table td:nth-child(5) {
+    width: 30%;
+}
+
+/* رنگ‌بندی متناوب ردیف‌های جدول */
+table.contact-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+table.contact-table tbody tr:nth-child(even) {
+    background-color: #e9e9e9;
+}
+
+/* افکت hover برای ردیف‌ها */
+table.contact-table tbody tr:hover {
+    background-color: #d3d3d3;
+}

@@ -1,0 +1,29 @@
+@model List<PhoneBook.Core.Entities.Contact>
+
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="~/css/contact.css" />
+}
+
+<table class="contact-table">
+    <thead>
+        <tr>
+            <th>شناسه</th>
+            <th>نام</th>
+            <th>نام خانوادگی</th>
+            <th>شماره تماس</th>
+            <th>آدرس</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var contact in Model)
+        {
+            <tr>
+                <td>@contact.Id</td>
+                <td>@contact.FirstName</td>
+                <td>@contact.LastName</td>
+                <td>@contact.PhoneNumber</td>
+                <td>@contact.Address</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,30 @@
+.content-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: calc(100vh - 20vh); /* اگر header شما دارای ارتفاع ۲۰٪ است */
+    box-sizing: border-box;
+}
+.left-panel {
+    width: 20%;
+    background-color: #f7f7f7;
+    padding: 20px;
+    box-sizing: border-box;
+    border-right: 1px solid #ddd;
+}
+.menu-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #eef;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center;
+    transition: background 0.3s;
+}
+.menu-item:hover {
+    background: #dde;
+}
+.right-panel {
+    width: 80%;
+    padding: 20px;
+    box-sizing: border-box;
+}

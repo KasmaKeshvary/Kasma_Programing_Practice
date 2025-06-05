@@ -1,6 +1,14 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Web\\wwwroot\\css\\contact.css",
+      "PackagePath": "staticwebassets\\css\\contact.css"
+    },
+    {
+      "Id": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Web\\wwwroot\\css\\index.css",
+      "PackagePath": "staticwebassets\\css\\index.css"
+    },
+    {
       "Id": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Web\\wwwroot\\css\\login.css",
       "PackagePath": "staticwebassets\\css\\login.css"
     },
@@ -15,6 +23,10 @@
     {
       "Id": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Web\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Web\\wwwroot\\js\\index.js",
+      "PackagePath": "staticwebassets\\js\\index.js"
     },
     {
       "Id": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Web\\wwwroot\\js\\registrationModal.js",
