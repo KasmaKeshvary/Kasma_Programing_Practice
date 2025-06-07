@@ -48,5 +48,31 @@ namespace PhoneBook.Infrastructure.Repositories
 
             return contacts;
         }
+
+        // متد جستجو با استفاده از stored procedure به نام "Search"
+        public async Task<List<Contact>> SearchContactsAsync(string searchQuery)
+        {
+            var contacts = new List<Contact>();
+            using var connection = new SqlConnection(_connectionString);
+            await connection.OpenAsync();
+            using var command = new SqlCommand("Search", connection)
+            {
+                CommandType = System.Data.CommandType.StoredProcedure
+            };
+            // اطمینان از ارسال پارامتر حتی در صورت null شدن searchQuery
+            command.Parameters.AddWithValue("@query", searchQuery ?? string.Empty);
+
+            using var reader = await command.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+                contacts.Add(new Contact
+                {
+                    Id = reader.GetInt32(0),
+                    FirstName = reader.GetString(1),
+                    LastName = reader.GetString(2),
+                    PhoneNumber = reader.GetString(3),
+                    Address = reader.GetString(4)
+                });
+            return contacts;
+        }
     }
 }

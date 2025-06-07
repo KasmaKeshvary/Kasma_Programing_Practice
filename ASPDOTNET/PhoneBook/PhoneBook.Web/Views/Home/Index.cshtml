@@ -11,7 +11,7 @@
 
 <!-- محتوای صفحه با استفاده از Flexbox تقسیم‌بندی شده -->
 <div class="content-wrapper">
-    <!-- ستون سمت چپ (۲۰٪ عرض) با سه منو -->
+    <!-- ستون سمت چپ (۲۰٪ عرض) با منوها -->
     <div class="left-panel">
         <h1>خوش آمدید، @(Model?.DisplayName ?? "کاربر عزیز")!</h1>
         <div class="menu-item" id="displayList">نمایش لیست</div>
@@ -24,12 +24,28 @@
         <div class="menu-item" id="logout">خروج</div>
     </div>
 
-    <!-- ستون سمت راست (۸۰٪ عرض) که محتویات تغییر می‌کند -->
+    <!-- ستون سمت راست (۸۰٪ عرض) -->
     <div class="right-panel" id="mainSection">
-        <p style="text-align:center; padding:20px;">لطفاً یکی از گزینه‌های منو را انتخاب کنید.</p>
+        <!-- بخش پیام پیش‌فرض -->
+        <div id="defaultContent">
+            <p style="text-align:center; padding:20px;">
+                لطفاً یکی از گزینه‌های منو را انتخاب کنید.
+            </p>
+        </div>
+
+        <!-- بخش جستجو (به صورت پیش‌فرض مخفی) -->
+        <div id="searchSection" style="display: none;">
+            <!-- فیلد ورودی جستجو به صورت استاتیک -->
+            <input type="text" id="searchInput" placeholder="متن جستجو را وارد کنید..."
+                   style="width: 100%; padding: 8px; margin-bottom: 10px;" />
+            <!-- ناحیه نمایش نتایج جستجو -->
+            <div id="searchResults">
+                <p>هیچ نتیجه‌ای برای نمایش موجود نیست.</p>
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- اضافه کردن jQuery از CDN و اسکریپت برای تغییر محتویات بخش راست برحسب منوی کلیک‌شده -->
+<!-- اضافه کردن jQuery از CDN و اسکریپت تغییر محتویات سمت راست بر اساس منو -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="~/js/index.js"></script>

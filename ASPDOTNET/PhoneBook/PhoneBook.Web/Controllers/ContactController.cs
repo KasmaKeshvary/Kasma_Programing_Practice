@@ -19,5 +19,12 @@ namespace PhoneBook.Web.Controllers
             var contacts = await _contactRepository.GetContactsAsync();
             return PartialView("_ContactListPartial", contacts);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Search(string query)
+        {
+            var contacts = await _contactRepository.SearchContactsAsync(query);
+            return PartialView("_SearchPartial", contacts);
+        }
     }
 }
