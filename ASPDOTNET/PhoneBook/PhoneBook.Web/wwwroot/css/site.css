@@ -1,10 +1,11 @@
 /* wwwroot/css/site.css */
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css');
 
-/* تنظیمات عمومی صفحه */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Vazir', sans-serif;
 }
+
 
 /* تنظیمات Header : ارتفاع 20% از صفحه */
 header {

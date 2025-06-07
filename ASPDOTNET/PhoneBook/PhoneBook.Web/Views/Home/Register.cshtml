@@ -20,8 +20,8 @@
 
 @if (TempData["RegistrationMessage"] != null && TempData["RegistrationSuccess"] != null)
 {
-    var isSuccess = (bool)TempData["RegistrationSuccess"];
-    var message = TempData["RegistrationMessage"].ToString();
+    var isSuccess = (bool)TempData!["RegistrationSuccess"]!;
+    var message = TempData["RegistrationMessage"]!.ToString();
     // انتخاب رنگ پس‌زمینه: سبز برای موفق و قرمز برای ناموفق
     var bgColor = isSuccess ? "lightgreen" : "lightcoral";
     var title = isSuccess ? "ثبت‌نام موفق!" : "خطا در ثبت‌نام!";  

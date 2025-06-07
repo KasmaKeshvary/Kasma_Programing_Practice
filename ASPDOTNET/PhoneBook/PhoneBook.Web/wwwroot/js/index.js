@@ -1,6 +1,9 @@
 $(document).ready(function () {
     // رویداد کلیک منوهای اصلی در نوار کناری
     $(".menu-item").on("click", function () {
+        // ذخیره محتوای اولیه mainSection هنگام لود صفحه
+        var originalMainSection = $("#mainSection").html();
+
         var id = $(this).attr("id");
 
         switch (id) {
@@ -19,8 +22,22 @@ $(document).ready(function () {
                 break;
 
             case "search":
+                // ابتدا محتوای اصلی mainSection (شامل defaultContent و searchSection) را بازیابی می‌کنیم
+                $("#mainSection").html(`
+                        <!-- ستون سمت راست (۸۰٪ عرض) -->
+                        <div class="right-panel" id="mainSection">
+                            <!-- بخش جستجو (به صورت پیش‌فرض مخفی) -->
+                            <div id="searchSection" style="display: none;">
+                                <!-- فیلد ورودی جستجو به صورت استاتیک -->
+                                <input type="text" id="searchInput" placeholder="متن جستجو را وارد کنید..."
+                                       style="width: 100%; padding: 8px; margin-bottom: 10px;" />
+                                <!-- ناحیه نمایش نتایج جستجو -->
+                                <div id="searchResults">
+                                    <p>هیچ نتیجه‌ای برای نمایش موجود نیست.</p>
+                                </div>
+                            </div>
+                        </div>`);
                 
-                $("#defaultContent").hide();
                 $("#searchSection").show();
                 
                 // فراخوانی اولیه اکشن Search با query تهی برای نمایش PartialView جستجو
