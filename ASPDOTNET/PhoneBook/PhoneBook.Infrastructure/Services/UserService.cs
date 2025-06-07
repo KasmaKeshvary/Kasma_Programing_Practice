@@ -1,14 +1,13 @@
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 using PhoneBook.Core.Entities;
+using PhoneBook.Core.Interfaces;
 using PhoneBook.Core.Settings;
 
 namespace PhoneBook.Infrastructure.Services
 {
-    public class UserService
+    public class UserService : IUserService // اضافه کردن پیاده‌سازی Interface
     {
         private readonly string _connectionString;
 

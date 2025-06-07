@@ -1,6 +1,8 @@
 using PhoneBook.Infrastructure.Services;
 using PhoneBook.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using PhoneBook.Core.Interfaces;
+using PhoneBook.Core.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +14,9 @@ builder.Services.Configure<PhoneBook.Core.Settings.DatabaseSettings>(
 
 // افزودن سرویس‌های مورد نیاز برای MVC
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<ContactRepository>();
-
+// ثبت سرویس‌ها با استفاده از interface
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
 
 //افزودن سرویس Session به DI با مدت زمان یک روز (24 ساعت)
 builder.Services.AddSession(options =>

@@ -1,0 +1,9 @@
+interface 
+database entity framework code first
+migration 
+addscope 
+addsingle
+addtransiat
+jwt
+cookie
+rtl

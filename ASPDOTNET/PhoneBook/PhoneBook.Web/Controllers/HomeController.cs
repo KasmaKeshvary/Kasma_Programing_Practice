@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PhoneBook.Infrastructure.Services;
+using PhoneBook.Core.Interfaces;
 using PhoneBook.Core.Entities;
 using System.Threading.Tasks;
 
@@ -7,10 +7,10 @@ namespace PhoneBook.Web.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly UserService _userService;
+    private readonly IUserService _userService;
 
     // از Dependency Injection استفاده می‌کنیم (در Program.cs این سرویس به DI اضافه شده است)
-    public HomeController(UserService userService)
+    public HomeController(IUserService userService)
     {
         _userService = userService;
     }

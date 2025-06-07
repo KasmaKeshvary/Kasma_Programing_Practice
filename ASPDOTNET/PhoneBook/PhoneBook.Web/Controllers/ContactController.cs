@@ -1,14 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
-using PhoneBook.Infrastructure.Repositories;
+using PhoneBook.Core.Interfaces;
 using System.Threading.Tasks;
 
 namespace PhoneBook.Web.Controllers
 {
     public class ContactController : Controller
     {
-        private readonly ContactRepository _contactRepository;
+        private readonly IContactRepository  _contactRepository;
 
-        public ContactController(ContactRepository contactRepository)
+        public ContactController(IContactRepository contactRepository)
         {
             _contactRepository = contactRepository;
         }

@@ -1,14 +1,14 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using PhoneBook.Core.Entities;
+using PhoneBook.Core.Interfaces;
 using PhoneBook.Core.Settings;
 
 namespace PhoneBook.Infrastructure.Repositories
 {
-    public class ContactRepository
+    public class ContactRepository : IContactRepository // اضافه کردن پیاده‌سازی
     {
         private readonly string _connectionString;
 
