@@ -1,14 +1,20 @@
-// فایل registrationModal.js
+﻿// فایل registrationModal.js
 
 // تابع نمایش modal
-function showRegistrationModal() {
+function showRegistrationModal(title, message, bgColor) {
     var modal = document.getElementById("registrationModal");
     if (modal) {
+        // تنظیم عنوان و پیام modal
+        modal.querySelector("h2").innerText = title;
+        modal.querySelector("p").innerText = message;
+        // تنظیم رنگ پس‌زمینه بخش محتوا
+        modal.querySelector(".modal-content").style.backgroundColor = bgColor;
+        // نمایش modal
         modal.style.display = "block";
-        // پس از 5 ثانیه پیام modal بسته شود و کاربر به صفحه ورود هدایت گردد
+        // پس از 5 ثانیه modal بسته شود و کاربر به صفحه ورود هدایت گردد
         setTimeout(function () {
             modal.style.display = "none";
-            window.location.href = "/Home/Login";  // تغییر مسیر به صفحه Login
+            window.location.href = "/Home/Login";
         }, 5000);
     }
 }
@@ -25,3 +31,4 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     }
 });
+

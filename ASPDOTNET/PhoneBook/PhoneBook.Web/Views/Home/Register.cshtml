@@ -1,3 +1,5 @@
+﻿@model dynamic
+
 @{
     ViewBag.Title = "ثبت نام";
 }
@@ -16,12 +18,21 @@
     </form>
 </section>
 
-@if (TempData["RegistrationSuccess"] != null)
+@if (TempData["RegistrationMessage"] != null && TempData["RegistrationSuccess"] != null)
 {
+    var isSuccess = (bool)TempData["RegistrationSuccess"];
+    var message = TempData["RegistrationMessage"].ToString();
+    // انتخاب رنگ پس‌زمینه: سبز برای موفق و قرمز برای ناموفق
+    var bgColor = isSuccess ? "lightgreen" : "lightcoral";
+    var title = isSuccess ? "ثبت‌نام موفق!" : "خطا در ثبت‌نام!";  
     @section Scripts {
         <script>
-            showRegistrationModal();
+            // استفاده از سریالایزر JSON برای اطمینان از انتقال صحیح رشته‌ها
+            var modalTitle = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(title));
+            var modalMessage = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(message));
+            var modalBgColor = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(bgColor));
+            showRegistrationModal(modalTitle, modalMessage, modalBgColor);
         </script>
     }
 }
-    
+

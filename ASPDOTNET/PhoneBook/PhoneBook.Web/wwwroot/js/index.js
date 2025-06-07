@@ -19,9 +19,7 @@ $(document).ready(function () {
                 break;
 
             case "search":
-                // زمانی که روی منوی جستجو کلیک می‌شود:
-                // - بخش defaultContent را پنهان می‌کنیم.
-                // - بخش searchSection را نمایش می‌دهیم.
+                
                 $("#defaultContent").hide();
                 $("#searchSection").show();
                 

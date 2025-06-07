@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PhoneBook.Infrastructure.Services;
 using PhoneBook.Core.Entities;
 using System.Threading.Tasks;
@@ -84,13 +84,19 @@ public class HomeController : Controller
         bool exists = await _userService.CheckUserExistsAsync(username);
         if (exists)
         {
-            ViewBag.Error = "این نام کاربری قبلاً ثبت شده است.";
+            // حالت ثبت‌نام ناموفق
+            TempData["RegistrationSuccess"] = false;
+            TempData["RegistrationMessage"] = "این نام کاربری قبلاً ثبت شده است.";
+    
             return View();
         }
         else
         {
             await _userService.RegisterUserAsync(username, password, displayName);
+            // حالت ثبت‌ نام موفق
             TempData["RegistrationSuccess"] = true;
+            TempData["RegistrationMessage"] = "ثبت نام با موفقیت انجام شد.";
+
             // در اینجا می‌توانید همان ویو ثبت‌نام را رندر کنید.
             return RedirectToAction("Register");
         }
