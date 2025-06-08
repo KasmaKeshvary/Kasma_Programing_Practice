@@ -1,16 +1,25 @@
 using PhoneBook.Infrastructure.Services;
 using PhoneBook.Infrastructure.Repositories;
+using PhoneBook.Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 using PhoneBook.Core.Interfaces;
 using PhoneBook.Core.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // ثبت تنظیمات به صورت strongly typed
-builder.Services.Configure<PhoneBook.Core.Settings.DatabaseSettings>(
+builder.Services.Configure<DatabaseSettings>(
     builder.Configuration.GetSection("DatabaseSettings")
 );
 
+// خواندن Connection String از بخش ConnectionStrings در appsettings.json
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+// ثبت DbContext برای استفاده از EF Code First
+builder.Services.AddDbContext<PhoneBookContext>(options =>
+    options.UseSqlServer(connectionString)
+);
 
 // افزودن سرویس‌های مورد نیاز برای MVC
 builder.Services.AddControllersWithViews();
