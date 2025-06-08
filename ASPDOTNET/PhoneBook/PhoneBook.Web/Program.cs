@@ -4,14 +4,9 @@ using PhoneBook.Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using PhoneBook.Core.Interfaces;
-using PhoneBook.Core.Settings;
+
 
 var builder = WebApplication.CreateBuilder(args);
-
-// ثبت تنظیمات به صورت strongly typed
-builder.Services.Configure<DatabaseSettings>(
-    builder.Configuration.GetSection("DatabaseSettings")
-);
 
 // خواندن Connection String از بخش ConnectionStrings در appsettings.json
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

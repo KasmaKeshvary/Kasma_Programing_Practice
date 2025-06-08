@@ -1,78 +1,46 @@
 using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
 using PhoneBook.Core.Entities;
 using PhoneBook.Core.Interfaces;
-using PhoneBook.Core.Settings;
+using PhoneBook.Infrastructure.Data;
 
 namespace PhoneBook.Infrastructure.Repositories
 {
     public class ContactRepository : IContactRepository // اضافه کردن پیاده‌سازی
     {
-        private readonly string _connectionString;
+        private readonly PhoneBookContext _context;
 
-        // دریافت رشته اتصال از طریق تنظیمات strongly typed که با IOptions تزریق می‌شود.
-        public ContactRepository(IOptions<DatabaseSettings> options)
+        // دریافت PhoneBookContext از طریق DI
+        public ContactRepository(PhoneBookContext context)
         {
-            _connectionString = options.Value.DBString;
+            _context = context;
         }
 
-        // متدی برای دریافت لیست مخاطبین از دیتابیس
+
+        // متدی برای دریافت لیست مخاطبین از دیتابیس به کمک EF
         public async Task<List<Contact>> GetContactsAsync()
         {
-            var contacts = new List<Contact>();
-
-            using var connection = new SqlConnection(_connectionString);
-
-            await connection.OpenAsync();
-            // اجرای کوئری جهت دریافت اطلاعات مخاطبین
-            var query = "SELECT Id, FirstName, LastName, PhoneNumber, Address FROM Contacts";
-
-            using var command = new SqlCommand(query, connection);
-
-            using var reader = await command.ExecuteReaderAsync();
-                    
-            while (await reader.ReadAsync())
-            {
-                var contact = new Contact
-                {
-                    Id = reader.GetInt32(0),
-                    FirstName = reader.GetString(1),
-                    LastName = reader.GetString(2),
-                    PhoneNumber = reader.GetString(3),
-                    Address = reader.GetString(4)
-                };
-                contacts.Add(contact);
-            }
-
-            return contacts;
+            return await _context.Contacts.ToListAsync();
         }
 
-        // متد جستجو با استفاده از stored procedure به نام "Search"
+        // متد جستجو برای مخاطبین به کمک EF و کوئری‌های LINQ
         public async Task<List<Contact>> SearchContactsAsync(string searchQuery)
         {
-            var contacts = new List<Contact>();
-            using var connection = new SqlConnection(_connectionString);
-            await connection.OpenAsync();
-            using var command = new SqlCommand("Search", connection)
+            // اگر عبارت جستجو خالی یا null باشد، تمام مخاطبین را برگردانید
+            if (string.IsNullOrWhiteSpace(searchQuery))
             {
-                CommandType = System.Data.CommandType.StoredProcedure
-            };
-            // اطمینان از ارسال پارامتر حتی در صورت null شدن searchQuery
-            command.Parameters.AddWithValue("@query", searchQuery ?? string.Empty);
+                return await _context.Contacts.ToListAsync();
+            }
 
-            using var reader = await command.ExecuteReaderAsync();
-            while (await reader.ReadAsync())
-                contacts.Add(new Contact
-                {
-                    Id = reader.GetInt32(0),
-                    FirstName = reader.GetString(1),
-                    LastName = reader.GetString(2),
-                    PhoneNumber = reader.GetString(3),
-                    Address = reader.GetString(4)
-                });
-            return contacts;
+            return await _context.Contacts
+                .Where(c =>
+                    c.FirstName.Contains(searchQuery) ||
+                    c.LastName.Contains(searchQuery) ||
+                    c.PhoneNumber.Contains(searchQuery) ||
+                    c.Address.Contains(searchQuery))
+                .ToListAsync();
         }
     }
 }
