@@ -3,6 +3,8 @@
 // تابع نمایش modal
 function showRegistrationModal(title, message, bgColor) {
     var modal = document.getElementById("registrationModal");
+    var registerBtn = document.getElementById("registerSubmit");
+
     if (modal) {
         // تنظیم عنوان و پیام modal
         modal.querySelector("h2").innerText = title;
@@ -14,7 +16,11 @@ function showRegistrationModal(title, message, bgColor) {
         // پس از 5 ثانیه modal بسته شود و کاربر به صفحه ورود هدایت گردد
         setTimeout(function () {
             modal.style.display = "none";
-            window.location.href = "/Home/Login";
+            if (registerBtn) {
+                registerBtn.addEventListener("click", function (e) {
+                    window.location.href = "/Home/Login";
+                });
+            }
         }, 5000);
     }
 }
@@ -31,4 +37,3 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     }
 });
-

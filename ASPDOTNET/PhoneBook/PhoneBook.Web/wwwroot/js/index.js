@@ -24,9 +24,6 @@ $(document).ready(function () {
             case "search":
                 // ابتدا محتوای اصلی mainSection (شامل defaultContent و searchSection) را بازیابی می‌کنیم
                 $("#mainSection").html(`
-                        <!-- ستون سمت راست (۸۰٪ عرض) -->
-                        <div class="right-panel" id="mainSection">
-                            <!-- بخش جستجو (به صورت پیش‌فرض مخفی) -->
                             <div id="searchSection" style="display: none;">
                                 <!-- فیلد ورودی جستجو به صورت استاتیک -->
                                 <input type="text" id="searchInput" placeholder="متن جستجو را وارد کنید..."
@@ -35,8 +32,7 @@ $(document).ready(function () {
                                 <div id="searchResults">
                                     <p>هیچ نتیجه‌ای برای نمایش موجود نیست.</p>
                                 </div>
-                            </div>
-                        </div>`);
+                            </div>`);
                 
                 $("#searchSection").show();
                 
@@ -55,8 +51,15 @@ $(document).ready(function () {
                 break;
 
             case "addPerson":
-                // در اینجا می‌توانید کد مربوط به بخش افزودن مخاطب را قرار دهید
-                $("#mainSection").html("<h2>اضافه کردن نفر</h2><p>فرم اضافه کردن مخاطب در اینجا قرار می‌گیرد.</p>");
+                $("#mainSection").html(`
+                            <form action="/Contact/Add" method="post">
+                                <input type="text" name="firstName" id="firstName" placeholder="نام" style="width: 10%; padding: 8px; margin-bottom: 10px;" required />
+                                <input type="text" name="lastName" id="lastName" placeholder="نام خانوادگی" style="width: 10%; padding: 8px; margin-bottom: 10px;" required />
+                                <input type="text" name="phoneNumber" id="phoneNumber" placeholder="شماره موبایل" style="width: 11%; padding: 8px; margin-bottom: 10px;" required />
+                                <input type="text" name="address" id="address" placeholder="آدرس" style="width: 25%; padding: 8px; margin-bottom: 10px;" required />
+                                <input type="text" name="email" id="email" placeholder="ایمیل" style="width: 15%; padding: 8px; margin-bottom: 10px;" required />
+                                <button type="submit" id="contactSubmit">ثبت‌ اطلاعات تماس</button>
+                            </form>`);
                 break;
 
             case "logout":

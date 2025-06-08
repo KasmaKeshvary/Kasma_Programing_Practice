@@ -35,6 +35,24 @@
     </div>
 </div>
 
+@if (TempData["AddContactMessage"] != null && TempData["AddContactSuccess"] != null)
+{
+    var isSuccess = (bool)TempData!["AddContactSuccess"]!;
+    var message = TempData["AddContactMessage"]!.ToString();
+    // انتخاب رنگ پس‌زمینه: سبز برای موفق و قرمز برای ناموفق
+    var bgColor = isSuccess ? "lightgreen" : "lightcoral";
+    var title = isSuccess ? "ثبت‌  موفق اطلاعات تماس!" : "خطا در ثبت‌ اطلاعات تماس!";  
+    @section Scripts {
+        <script>
+            // استفاده از سریالایزر JSON برای اطمینان از انتقال صحیح رشته‌ها
+            var modalTitle = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(title));
+            var modalMessage = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(message));
+            var modalBgColor = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(bgColor));
+            showRegistrationModal(modalTitle, modalMessage, modalBgColor);
+        </script>
+    }
+}
+
 <!-- اضافه کردن jQuery از CDN و اسکریپت تغییر محتویات سمت راست بر اساس منو -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="~/js/index.js"></script>

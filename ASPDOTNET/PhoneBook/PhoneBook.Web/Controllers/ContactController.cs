@@ -1,12 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using PhoneBook.Core.Interfaces;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace PhoneBook.Web.Controllers
 {
     public class ContactController : Controller
     {
-        private readonly IContactRepository  _contactRepository;
+        private readonly IContactRepository _contactRepository;
 
         public ContactController(IContactRepository contactRepository)
         {
@@ -26,5 +27,64 @@ namespace PhoneBook.Web.Controllers
             var contacts = await _contactRepository.SearchContactsAsync(query);
             return PartialView("_SearchPartial", contacts);
         }
+
+        
+        [HttpPost]
+        public async Task<IActionResult> Add(string firstName, string lastName, string phoneNumber, string address, string email)
+        {
+            // // اعتبارسنجی ورودی‌ها
+            // if (string.IsNullOrWhiteSpace(firstName) || !Regex.IsMatch(firstName, @"^[\p{L}]+$"))
+            // {
+            //     TempData["AddContactSuccess"] = false;
+            //     TempData["AddContactMessage"] = "نام معتبر نمی‌باشد.";
+            //     return RedirectToAction("List");
+            // }
+
+            // if (string.IsNullOrWhiteSpace(lastName) || !Regex.IsMatch(lastName, @"^[\p{L}]+$"))
+            // {
+            //     TempData["AddContactSuccess"] = false;
+            //     TempData["AddContactMessage"] = "نام خانوادگی معتبر نمی‌باشد.";
+            //     return RedirectToAction("List");
+            // }
+
+            // if (!Regex.IsMatch(phoneNumber, @"^09\d{9}$"))
+            // {
+            //     TempData["AddContactSuccess"] = false;
+            //     TempData["AddContactMessage"] = "شماره موبایل باید با 09 شروع شده و 11 رقمی باشد.";
+            //     return RedirectToAction("List");
+            // }
+
+            // if (!Regex.IsMatch(email, @"^\S+@\S+\.\S+$"))
+            // {
+            //     TempData["AddContactSuccess"] = false;
+            //     TempData["AddContactMessage"] = "فرمت ایمیل معتبر نیست.";
+            //     return RedirectToAction("List");
+            // }
+
+            // if (string.IsNullOrWhiteSpace(address) || address.Length < 30)
+            // {
+            //     TempData["AddContactSuccess"] = false;
+            //     TempData["AddContactMessage"] = "آدرس باید حداقل 30 کاراکتر باشد.";
+            //     return RedirectToAction("List");
+            // }
+
+            try
+            {
+                await _contactRepository.AddContactAsync(firstName, lastName, phoneNumber, address, email);
+                TempData["AddContactSuccess"] = true;
+                TempData["AddContactMessage"] = "ثبت اطلاعات تماس با موفقیت انجام شد.";
+            }
+            catch (Exception ex)
+            {
+                // در صورت بروز خطا در ثبت اطلاعات
+                TempData["AddContactSuccess"] = false;
+                TempData["AddContactMessage"] = "خطا در ثبت اطلاعات تماس: " + ex.Message;
+            }
+
+            // به عنوان مثال، اگر view مربوط به لیست مخاطبین "List.cshtml" است
+            return RedirectToAction("Index", "Home");
+
+        }
     }
 }
+

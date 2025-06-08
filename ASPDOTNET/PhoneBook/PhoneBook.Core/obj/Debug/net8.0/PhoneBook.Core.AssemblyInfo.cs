@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PhoneBook.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6edb1c97e4efb8399b9e579c10c05e8c73fb485")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d21d4eedb146e84554545b4f6d9925a157cfeebb")]
 [assembly: System.Reflection.AssemblyProductAttribute("PhoneBook.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PhoneBook.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

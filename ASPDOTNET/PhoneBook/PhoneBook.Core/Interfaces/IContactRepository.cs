@@ -8,5 +8,6 @@ namespace PhoneBook.Core.Interfaces
     {
         Task<List<Contact>> GetContactsAsync();
         Task<List<Contact>> SearchContactsAsync(string searchQuery);
+        Task AddContactAsync(string firstName, string lastName, string phoneNumber, string address, string email);
     }
 }
