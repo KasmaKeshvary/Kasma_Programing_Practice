@@ -13,8 +13,8 @@
     <!-- ستون سمت چپ (۲۰٪ عرض) با منوها -->
     <div class="left-panel">
         <h1>خوش آمدید، @(ViewData["DisplayName"] as string ?? "کاربر عزیز")!</h1>
-        <p>مدت اعتبار باقی‌مانده توکن: @(ViewData["RemainingMinutes"] as string ?? "نامشخص") دقیقه</p>
-        
+        <p>مدت اعتبار باقی‌مانده توکن: <span id="remainingTime">@(ViewData["RemainingCookieTime"] ?? "نامشخص")</span> دقیقه</p>
+        <p><strong>دفعات ورود :</strong> <span id="visitCounter">0</span></p>
         <div class="menu-item" id="displayList">نمایش لیست</div>
         <div class="menu-item" id="search">جست و جو</div>
         <!-- اگر می‌خواهید تنها برای مدیر نمایش دهید -->

@@ -29,23 +29,28 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult Index(User user)
     {
-        ViewData["DisplayName"] = User?.FindFirst("DisplayName")?.Value ?? User?.Identity?.Name ?? "کاربر عزیز";
+        string remainingSeconds  = "نامشخص";
 
-        string remainingMinutes = "نامشخص";
         if (User?.Identity?.IsAuthenticated == true)
         {
-            var expClaim = User.FindFirst(JwtRegisteredClaimNames.Exp)?.Value;
+            ViewData["DisplayName"] = User?.FindFirst("DisplayName")?.Value ?? User?.Identity?.Name ?? "کاربر عزیز";
+
+            var expClaim = User?.FindFirst(JwtRegisteredClaimNames.Exp)?.Value;
             if (!string.IsNullOrEmpty(expClaim) && long.TryParse(expClaim, out long expSeconds))
             {
                 DateTime expDate = DateTimeOffset.FromUnixTimeSeconds(expSeconds).UtcDateTime;
                 var remainingTime = expDate - DateTime.UtcNow;
-                remainingMinutes = remainingTime.TotalMinutes.ToString("F0", CultureInfo.InvariantCulture);
+                remainingSeconds = remainingTime.TotalSeconds.ToString("F0", CultureInfo.InvariantCulture);
             }
+
+            int parsedSeconds = int.TryParse(remainingSeconds?.ToString(), out int result) ? result : 3600;
+            ViewData["RemainingCookieTime"] = parsedSeconds > 3600 ? 3600 : parsedSeconds;
+
+            return View(user);
         }
 
-        ViewData["RemainingMinutes"] = remainingMinutes ?? "نامشخص";
-
-        return View(user);
+        return RedirectToAction("Login");
+        
     }
 
     // نمایش فرم ورود

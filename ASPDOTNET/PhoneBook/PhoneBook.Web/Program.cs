@@ -40,6 +40,7 @@ builder.Services.AddScoped<IContactRepository, ContactRepository>();
 
 builder.Services.AddAuthentication(options =>
 {
+    Console.WriteLine("Executing AddAuthentication ..."); // 🔹 بررسی اینکه تنظیمات JWT اجرا می‌شود.
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
@@ -51,6 +52,7 @@ builder.Services.AddAuthentication(options =>
         OnMessageReceived = context =>
         {
             var token = context.Request.Cookies["jwt"];
+            
             if (!string.IsNullOrEmpty(token))
             {
                 context.Token = token;
@@ -82,7 +84,8 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Login}/{id?}");
-
+    pattern: "{controller=Home}/{action=Index}/{id?}",
+    defaults: new { controller = "Home", action = "Index" }
+);
 
 app.Run();

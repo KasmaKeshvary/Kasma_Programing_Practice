@@ -1,98 +1,105 @@
-$(document).ready(function () {
-    // رویداد کلیک منوهای اصلی در نوار کناری
-    $(".menu-item").on("click", function () {
-        // ذخیره محتوای اولیه mainSection هنگام لود صفحه
-        var originalMainSection = $("#mainSection").html();
+document.addEventListener("DOMContentLoaded", function () {
+    // رویداد کلیک برای منوهای اصلی در نوار کناری
+    document.querySelectorAll(".menu-item").forEach(item => {
+        item.addEventListener("click", function () {
+            const mainSection = document.getElementById("mainSection");
+            const id = this.id;
 
-        var id = $(this).attr("id");
+            switch (id) {
+                case "displayList":
+                    fetch('/Contact/List')
+                        .then(response => response.text())
+                        .then(result => mainSection.innerHTML = result)
+                        .catch(() => mainSection.innerHTML = "<p>خطا در بارگذاری لیست مخاطبین.</p>");
+                    break;
 
-        switch (id) {
-            case "displayList":
-                // دریافت لیست کامل مخاطبین
-                $.ajax({
-                    url: '/Contact/List',
-                    type: 'GET',
-                    success: function (result) {
-                        $("#mainSection").html(result);
-                    },
-                    error: function () {
-                        $("#mainSection").html("<p>خطا در بارگذاری لیست مخاطبین.</p>");
-                    }
-                });
-                break;
+                case "search":
+                    mainSection.innerHTML = `
+                        <div id="searchSection" style="display: none;">
+                            <input type="text" id="searchInput" placeholder="متن جستجو را وارد کنید..."
+                                   style="width: 100%; padding: 8px; margin-bottom: 10px;" />
+                            <div id="searchResults">
+                                <p>هیچ نتیجه‌ای برای نمایش موجود نیست.</p>
+                            </div>
+                        </div>`;
+                    
+                    document.getElementById("searchSection").style.display = "block";
 
-            case "search":
-                // ابتدا محتوای اصلی mainSection (شامل defaultContent و searchSection) را بازیابی می‌کنیم
-                $("#mainSection").html(`
-                            <div id="searchSection" style="display: none;">
-                                <!-- فیلد ورودی جستجو به صورت استاتیک -->
-                                <input type="text" id="searchInput" placeholder="متن جستجو را وارد کنید..."
-                                       style="width: 100%; padding: 8px; margin-bottom: 10px;" />
-                                <!-- ناحیه نمایش نتایج جستجو -->
-                                <div id="searchResults">
-                                    <p>هیچ نتیجه‌ای برای نمایش موجود نیست.</p>
-                                </div>
-                            </div>`);
-                
-                $("#searchSection").show();
-                
-                // فراخوانی اولیه اکشن Search با query تهی برای نمایش PartialView جستجو
-                $.ajax({
-                    url: '/Contact/Search',
-                    type: 'GET',
-                    data: { query: "" },
-                    success: function (result) {
-                        $("#searchResults").html(result);
-                    },
-                    error: function () {
-                        $("#searchResults").html("<p>خطا در بارگذاری بخش جستجو.</p>");
-                    }
-                });
-                break;
+                    fetch('/Contact/Search?query=')
+                        .then(response => response.text())
+                        .then(result => document.getElementById("searchResults").innerHTML = result)
+                        .catch(() => document.getElementById("searchResults").innerHTML = "<p>خطا در بارگذاری بخش جستجو.</p>");
+                    break;
 
-            case "addPerson":
-                $("#mainSection").html(`
-                            <form action="/Contact/Add" method="post">
-                                <input type="text" name="firstName" id="firstName" placeholder="نام" style="width: 10%; padding: 8px; margin-bottom: 10px;" required />
-                                <input type="text" name="lastName" id="lastName" placeholder="نام خانوادگی" style="width: 10%; padding: 8px; margin-bottom: 10px;" required />
-                                <input type="text" name="phoneNumber" id="phoneNumber" placeholder="شماره موبایل" style="width: 11%; padding: 8px; margin-bottom: 10px;" required />
-                                <input type="text" name="address" id="address" placeholder="آدرس" style="width: 25%; padding: 8px; margin-bottom: 10px;" required />
-                                <input type="text" name="email" id="email" placeholder="ایمیل" style="width: 15%; padding: 8px; margin-bottom: 10px;" required />
-                                <button type="submit" id="contactSubmit">ثبت‌ اطلاعات تماس</button>
-                            </form>`);
-                break;
+                case "addPerson":
+                    mainSection.innerHTML = `
+                        <form action="/Contact/Add" method="post">
+                            <input type="text" name="firstName" id="firstName" placeholder="نام" required />
+                            <input type="text" name="lastName" id="lastName" placeholder="نام خانوادگی" required />
+                            <input type="text" name="phoneNumber" id="phoneNumber" placeholder="شماره موبایل" required />
+                            <input type="text" name="address" id="address" placeholder="آدرس" required />
+                            <input type="text" name="email" id="email" placeholder="ایمیل" required />
+                            <button type="submit" id="contactSubmit">ثبت‌ اطلاعات تماس</button>
+                        </form>`;
+                    break;
 
-            case "logout":
-                window.location.href = "/Home/Login"; // هدایت به صفحه ورود
-                break;
+                case "logout":
+                    fetch("/Home/Logout", { method: "GET" })
+                        .then(response => {
+                            if (response.redirected) {
+                                localStorage.removeItem("visitCount");
+                                window.location.href = response.url;
+                            }
+                        });
+                    break;
 
-            default:
-                $("#mainSection").html("<p>لطفاً یک گزینه انتخاب کنید.</p>");
-                break;
+                default:
+                    mainSection.innerHTML = "<p>لطفاً یک گزینه انتخاب کنید.</p>";
+                    break;
+            }
+        });
+    });
+
+    // رویداد keyup برای فیلد جستجو
+    document.getElementById("mainSection").addEventListener("keyup", function (event) {
+        if (event.target.id === "searchInput") {
+            clearTimeout(window.searchDebounceTimeout);
+            window.searchDebounceTimeout = setTimeout(() => {
+                fetch(`/Contact/Search?query=${event.target.value}`)
+                    .then(response => response.text())
+                    .then(result => document.getElementById("searchResults").innerHTML = result)
+                    .catch(() => document.getElementById("searchResults").innerHTML = "<p>خطا در جستجو.</p>");
+            }, 300);
         }
     });
 
-    // رویداد keyup برای فیلد جستجو داخل PartialView
-    // از event delegation برای المانی که به صورت داینامیک به #mainSection اضافه می‌شود استفاده می‌کنیم.
-    $("#mainSection").on("keyup", "#searchInput", function () {
-        var query = $(this).val();
+    let remainingTime = document.getElementById("remainingTime").innerHTML;
+    
+    function updateTokenTime() {
+        if (remainingTime > 0) {
+            remainingTime--;
 
-        // استفاده از debounce برای جلوگیری از ارسال درخواست‌های مکرر
-        clearTimeout(window.searchDebounceTimeout);
-        window.searchDebounceTimeout = setTimeout(function () {
-            $.ajax({
-                url: '/Contact/Search',
-                type: 'GET',
-                data: { query: query },
-                success: function (result) {
-                    // نتایج جستجو را در container مخصوص (با شناسه searchResults) درج می‌کنیم.
-                    $("#searchResults").html(result);
-                },
-                error: function () {
-                    $("#searchResults").html("<p>خطا در جستجو.</p>");
-                }
-            });
-        }, 300);
-    });
+            let minutes = Math.floor(remainingTime / 60); // محاسبه دقیقه
+            let seconds = remainingTime % 60; // محاسبه ثانیه
+
+            document.getElementById("remainingTime").innerText = `${minutes} دقیقه و ${seconds} ثانیه`;
+        } else {
+            document.getElementById("remainingTime").innerText = "منقضی شد!";
+        }
+    }
+
+    setInterval(updateTokenTime, 1000); // هر ۱ ثانیه مقدار را کاهش بده
+
+    // شمارش ورود مجدد به سایت
+    // let visitCount = localStorage.getItem("visitCount");
+    let visitCount = 1;
+
+    if (!sessionStorage.getItem("sessionActive")) {
+        console.log("session");
+        visitCount = visitCount ? parseInt(visitCount ?? 1, 10) + 1 : 1;
+        localStorage.setItem("visitCount", visitCount);
+    }
+
+    sessionStorage.setItem("sessionActive", "true");
+    document.getElementById("visitCounter").innerText = `${visitCount}`;
 });
-
