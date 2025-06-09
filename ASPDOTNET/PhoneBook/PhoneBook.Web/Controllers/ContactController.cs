@@ -32,41 +32,41 @@ namespace PhoneBook.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(string firstName, string lastName, string phoneNumber, string address, string email)
         {
-            // // اعتبارسنجی ورودی‌ها
-            // if (string.IsNullOrWhiteSpace(firstName) || !Regex.IsMatch(firstName, @"^[\p{L}]+$"))
-            // {
-            //     TempData["AddContactSuccess"] = false;
-            //     TempData["AddContactMessage"] = "نام معتبر نمی‌باشد.";
-            //     return RedirectToAction("List");
-            // }
+            // اعتبارسنجی ورودی‌ها
+            if (string.IsNullOrWhiteSpace(firstName) || !Regex.IsMatch(firstName, @"^[\p{L}]+$"))
+            {
+                TempData["AddContactSuccess"] = false;
+                TempData["AddContactMessage"] = "نام معتبر نمی‌باشد.";
+                return RedirectToAction("Index", "Home");
+            }
 
-            // if (string.IsNullOrWhiteSpace(lastName) || !Regex.IsMatch(lastName, @"^[\p{L}]+$"))
-            // {
-            //     TempData["AddContactSuccess"] = false;
-            //     TempData["AddContactMessage"] = "نام خانوادگی معتبر نمی‌باشد.";
-            //     return RedirectToAction("List");
-            // }
+            if (string.IsNullOrWhiteSpace(lastName) || !Regex.IsMatch(lastName, @"^[\p{L}]+$"))
+            {
+                TempData["AddContactSuccess"] = false;
+                TempData["AddContactMessage"] = "نام خانوادگی معتبر نمی‌باشد.";
+                return RedirectToAction("Index", "Home");
+            }
 
-            // if (!Regex.IsMatch(phoneNumber, @"^09\d{9}$"))
-            // {
-            //     TempData["AddContactSuccess"] = false;
-            //     TempData["AddContactMessage"] = "شماره موبایل باید با 09 شروع شده و 11 رقمی باشد.";
-            //     return RedirectToAction("List");
-            // }
+            if (!Regex.IsMatch(phoneNumber, @"^09\d{9}$"))
+            {
+                TempData["AddContactSuccess"] = false;
+                TempData["AddContactMessage"] = "شماره موبایل باید با 09 شروع شده و 11 رقمی باشد.";
+                return RedirectToAction("Index", "Home");
+            }
 
-            // if (!Regex.IsMatch(email, @"^\S+@\S+\.\S+$"))
-            // {
-            //     TempData["AddContactSuccess"] = false;
-            //     TempData["AddContactMessage"] = "فرمت ایمیل معتبر نیست.";
-            //     return RedirectToAction("List");
-            // }
+            if (!Regex.IsMatch(email, @"^\S+@\S+\.\S+$"))
+            {
+                TempData["AddContactSuccess"] = false;
+                TempData["AddContactMessage"] = "فرمت ایمیل معتبر نیست.";
+                return RedirectToAction("Index", "Home");
+            }
 
-            // if (string.IsNullOrWhiteSpace(address) || address.Length < 30)
-            // {
-            //     TempData["AddContactSuccess"] = false;
-            //     TempData["AddContactMessage"] = "آدرس باید حداقل 30 کاراکتر باشد.";
-            //     return RedirectToAction("List");
-            // }
+            if (string.IsNullOrWhiteSpace(address) || address.Length < 30)
+            {
+                TempData["AddContactSuccess"] = false;
+                TempData["AddContactMessage"] = "آدرس باید حداقل 30 کاراکتر باشد.";
+                return RedirectToAction("Index", "Home");
+            }
 
             try
             {

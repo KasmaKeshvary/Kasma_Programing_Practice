@@ -1,6 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PhoneBook.Core.Interfaces;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using PhoneBook.Core.Entities;
+using PhoneBook.Core.Interfaces;
+using PhoneBook.Core.Setting;
+using System;
+using System.Globalization;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace PhoneBook.Web.Controllers;
@@ -8,16 +17,34 @@ namespace PhoneBook.Web.Controllers;
 public class HomeController : Controller
 {
     private readonly IUserService _userService;
+    private readonly JwtSettings _jwtSettings;
 
     // از Dependency Injection استفاده می‌کنیم (در Program.cs این سرویس به DI اضافه شده است)
-    public HomeController(IUserService userService)
+    public HomeController(IUserService userService, IOptions<JwtSettings> jwtOptions)
     {
         _userService = userService;
+        _jwtSettings = jwtOptions.Value;
     }
 
     [HttpGet]
     public IActionResult Index(User user)
     {
+        ViewData["DisplayName"] = User?.FindFirst("DisplayName")?.Value ?? User?.Identity?.Name ?? "کاربر عزیز";
+
+        string remainingMinutes = "نامشخص";
+        if (User?.Identity?.IsAuthenticated == true)
+        {
+            var expClaim = User.FindFirst(JwtRegisteredClaimNames.Exp)?.Value;
+            if (!string.IsNullOrEmpty(expClaim) && long.TryParse(expClaim, out long expSeconds))
+            {
+                DateTime expDate = DateTimeOffset.FromUnixTimeSeconds(expSeconds).UtcDateTime;
+                var remainingTime = expDate - DateTime.UtcNow;
+                remainingMinutes = remainingTime.TotalMinutes.ToString("F0", CultureInfo.InvariantCulture);
+            }
+        }
+
+        ViewData["RemainingMinutes"] = remainingMinutes ?? "نامشخص";
+
         return View(user);
     }
 
@@ -35,29 +62,44 @@ public class HomeController : Controller
         var user = await _userService.ValidateUserAsync(username, password);
         if (user != null)
         {
-            // ثبت شناسه کاربر در Session
-            HttpContext.Session.SetString("IsAuthenticated", "true");
-            HttpContext.Session.SetString("DisplayName", user.DisplayName);
+            // ایجاد توکن JWT
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_jwtSettings.SecretKey);
 
-            // استفاده از کوکی
-            // var claims = new List<Claim>
-            // {
-            //     new Claim(ClaimTypes.Name, user.DisplayName),
-            //     new Claim(ClaimTypes.Role, user.Username.ToLower() == "admin" ? "Admin" : "User")
-            // };
+            if (key.Length == 0)
+            {
+                throw new InvalidOperationException("SecretKey مقداردهی نشده است.");
+            }
 
-            // var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            // var authProperties = new AuthenticationProperties
-            // {
-            //     // مدت تایید، یعنی کوکی پس از 1 روز منقضی خواهد شد
-            //     ExpiresUtc = DateTimeOffset.UtcNow.AddDays(1),
-            //     IsPersistent = true
-            // };
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim("DisplayName", user.DisplayName),
+                new Claim(JwtRegisteredClaimNames.Exp, 
+                    DateTimeOffset.UtcNow.AddMinutes(_jwtSettings.ExpiresInMinutes).ToUnixTimeSeconds().ToString(), 
+                    ClaimValueTypes.Integer)
+            };
+            
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiresInMinutes),
+                Issuer = _jwtSettings.Issuer,
+                Audience = _jwtSettings.Audience,
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
 
-            // await HttpContext.SignInAsync(
-            // CookieAuthenticationDefaults.AuthenticationScheme,
-            // new ClaimsPrincipal(claimsIdentity),
-            // authProperties);
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
+
+            // قرار دادن توکن در یک کوکی HTTP-only
+            Response.Cookies.Append("jwt", tokenString, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true, // در محیط تولید (production) مقدار true، در حالت توسعه ممکن است false باشد.
+                SameSite = SameSiteMode.Strict,
+                Expires = tokenDescriptor.Expires
+            });
 
             // در صورتی که از مدل استفاده می‌کنید:
             return RedirectToAction("Index", user);
@@ -87,16 +129,24 @@ public class HomeController : Controller
             // حالت ثبت‌نام ناموفق
             TempData["RegistrationSuccess"] = false;
             TempData["RegistrationMessage"] = "این نام کاربری قبلاً ثبت شده است.";
-    
+
             return View();
         }
         else
         {
-            await _userService.RegisterUserAsync(username, password, displayName);
-            // حالت ثبت‌ نام موفق
-            TempData["RegistrationSuccess"] = true;
-            TempData["RegistrationMessage"] = "ثبت نام با موفقیت انجام شد.";
-
+            try
+            {
+                await _userService.RegisterUserAsync(username, password, displayName);
+                // حالت ثبت‌ نام موفق
+                TempData["RegistrationSuccess"] = true;
+                TempData["RegistrationMessage"] = "ثبت نام با موفقیت انجام شد.";
+            }
+            catch (Exception ex)
+            {
+                TempData["RegistrationSuccess"] = false;
+                TempData["RegistrationMessage"] = "ثبت نام با خطا مواجه خطا شد!" + ex.Message;
+            }
+            
             // در اینجا می‌توانید همان ویو ثبت‌نام را رندر کنید.
             return RedirectToAction("Register");
         }
@@ -106,8 +156,8 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult Logout()
     {
-        HttpContext.Session.Clear();
-        // await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        // حذف کوکی JWT
+        Response.Cookies.Delete("jwt");
 
         return RedirectToAction("Login");
     }

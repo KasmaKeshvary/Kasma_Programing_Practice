@@ -1,4 +1,3 @@
-@model PhoneBook.Core.Entities.User?
 
 @{
     ViewData["Title"] = "PhoneBook";
@@ -13,13 +12,18 @@
 <div class="content-wrapper">
     <!-- ستون سمت چپ (۲۰٪ عرض) با منوها -->
     <div class="left-panel">
-        <h1>خوش آمدید، @(Model?.DisplayName ?? "کاربر عزیز")!</h1>
+        <h1>خوش آمدید، @(ViewData["DisplayName"] as string ?? "کاربر عزیز")!</h1>
+        <p>مدت اعتبار باقی‌مانده توکن: @(ViewData["RemainingMinutes"] as string ?? "نامشخص") دقیقه</p>
+        
         <div class="menu-item" id="displayList">نمایش لیست</div>
         <div class="menu-item" id="search">جست و جو</div>
-        @if (Model != null && Model.Username.ToLower() == "admin")
+        <!-- اگر می‌خواهید تنها برای مدیر نمایش دهید -->
+        @if (User?.Identity?.IsAuthenticated == true && 
+            string.Equals(User?.Identity?.Name?.ToLower() ?? "کاربر", "admin", StringComparison.OrdinalIgnoreCase))
         {
             <div class="menu-item" id="addPerson">اضافه کردن نفر</div>
         }
+
         <!-- دکمه خروج -->
         <div class="menu-item" id="logout">خروج</div>
     </div>
@@ -35,20 +39,41 @@
     </div>
 </div>
 
-@if (TempData["AddContactMessage"] != null && TempData["AddContactSuccess"] != null)
-{
-    var isSuccess = (bool)TempData!["AddContactSuccess"]!;
-    var message = TempData["AddContactMessage"]!.ToString();
-    // انتخاب رنگ پس‌زمینه: سبز برای موفق و قرمز برای ناموفق
-    var bgColor = isSuccess ? "lightgreen" : "lightcoral";
-    var title = isSuccess ? "ثبت‌  موفق اطلاعات تماس!" : "خطا در ثبت‌ اطلاعات تماس!";  
-    @section Scripts {
-        <script>
-            // استفاده از سریالایزر JSON برای اطمینان از انتقال صحیح رشته‌ها
-            var modalTitle = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(title));
-            var modalMessage = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(message));
-            var modalBgColor = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(bgColor));
+
+@{
+    var scriptList = new List<string>();
+
+    if (User?.Identity?.IsAuthenticated == true)
+    {
+        scriptList.Add(@"
+            var modalTitle = " + System.Text.Json.JsonSerializer.Serialize("خوش آمدید!") + @";
+            var modalMessage = " + System.Text.Json.JsonSerializer.Serialize("خوشحالیم که دوباره به ما سر زدید.") + @";
+            var modalBgColor = " + System.Text.Json.JsonSerializer.Serialize("lightgreen") + @";
             showRegistrationModal(modalTitle, modalMessage, modalBgColor);
+        ");
+    }
+
+    if (TempData["AddContactMessage"] != null && TempData["AddContactSuccess"] != null)
+    {
+        var isSuccess = (bool)TempData!["AddContactSuccess"]!;
+        var message = TempData["AddContactMessage"]!.ToString();
+        var bgColor = isSuccess ? "lightgreen" : "lightcoral";
+        var title = isSuccess ? "ثبت‌ موفق اطلاعات تماس!" : "خطا در ثبت‌ اطلاعات تماس!";
+
+        scriptList.Add(@"
+            var modalTitle = " + System.Text.Json.JsonSerializer.Serialize(title) + @";
+            var modalMessage = " + System.Text.Json.JsonSerializer.Serialize(message) + @";
+            var modalBgColor = " + System.Text.Json.JsonSerializer.Serialize(bgColor) + @";
+            showRegistrationModal(modalTitle, modalMessage, modalBgColor);
+        ");
+    }
+}
+
+@section Scripts {
+    @foreach (var script in scriptList)
+    {
+        <script>
+            @Html.Raw(script)
         </script>
     }
 }
