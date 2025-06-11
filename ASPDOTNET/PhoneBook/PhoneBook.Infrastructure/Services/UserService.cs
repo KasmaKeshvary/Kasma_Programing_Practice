@@ -2,46 +2,35 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PhoneBook.Core.Entities;
 using PhoneBook.Core.Interfaces;
-using PhoneBook.Infrastructure.Data;
+
 
 namespace PhoneBook.Infrastructure.Services
 {
-    public class UserService : IUserService // اضافه کردن پیاده‌سازی Interface
+    public class UserService : IUserService
     {
-        private readonly PhoneBookContext _context;
+        private readonly IUserRepositoryRead _userRepositoryRead;
+        private readonly IUserRepositoryWrite _userRepositoryWrite;
 
-        // دریافت DbContext از طریق DI
-        public UserService(PhoneBookContext context)
+        public UserService(IUserRepositoryRead userRepositoryRead, IUserRepositoryWrite userRepositoryWrite)
         {
-            _context = context;
+            _userRepositoryRead = userRepositoryRead;
+            _userRepositoryWrite = userRepositoryWrite;
         }
 
-        // اعتبارسنجی کاربر به کمک EF
         public async Task<User?> ValidateUserAsync(string username, string password)
         {
-            return await _context.Users
-                .FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
+            return await _userRepositoryRead.GetUserByUsernameAndPasswordAsync(username, password);
         }
 
-       // بررسی وجود کاربر به کمک EF
         public async Task<bool> CheckUserExistsAsync(string username)
         {
-            return await _context.Users.AnyAsync(u => u.Username == username);
+            var user = await _userRepositoryRead.GetUserByUsernameAsync(username);
+            return user != null;
         }
 
-
-        // ثبت کاربر جدید به کمک EF
         public async Task RegisterUserAsync(string username, string password, string displayName)
         {
-            var newUser = new User
-            {
-                Username = username,
-                Password = password, // نکته: در محیط واقعی، همیشه کلمه عبور را هش کنید!
-                DisplayName = displayName
-            };
-
-            _context.Users.Add(newUser);
-            await _context.SaveChangesAsync();
+            await _userRepositoryWrite.AddUserAsync(username, password, displayName);
         }
 
     }

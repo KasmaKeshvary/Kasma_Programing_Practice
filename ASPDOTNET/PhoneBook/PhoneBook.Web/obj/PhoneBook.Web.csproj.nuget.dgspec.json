@@ -4,6 +4,75 @@
     "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Web\\PhoneBook.Web.csproj": {}
   },
   "projects": {
+    "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Application\\PhoneBook.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Application\\PhoneBook.Application.csproj",
+        "projectName": "PhoneBook.Application",
+        "projectPath": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Application\\PhoneBook.Application.csproj",
+        "packagesPath": "C:\\Users\\Kasma\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Kasma\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Core\\PhoneBook.Core.csproj": {
+                "projectPath": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Core\\PhoneBook.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[9.0.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.408/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Core\\PhoneBook.Core.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -63,93 +132,6 @@
         }
       }
     },
-    "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Infrastructure\\PhoneBook.Infrastructure.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Infrastructure\\PhoneBook.Infrastructure.csproj",
-        "projectName": "PhoneBook.Infrastructure",
-        "projectPath": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Infrastructure\\PhoneBook.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Kasma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Infrastructure\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Kasma\\AppData\\Roaming\\NuGet\\NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net8.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public/nuget/v3/index.json": {}
-        },
-        "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
-            "projectReferences": {
-              "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Core\\PhoneBook.Core.csproj": {
-                "projectPath": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Core\\PhoneBook.Core.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        }
-      },
-      "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
-          "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[9.0.5, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[9.0.5, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[9.0.5, )"
-            },
-            "Microsoft.Extensions.Configuration": {
-              "target": "Package",
-              "version": "[9.0.5, )"
-            },
-            "Microsoft.Extensions.Configuration.Json": {
-              "target": "Package",
-              "version": "[9.0.5, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.408/PortableRuntimeIdentifierGraph.json"
-        }
-      }
-    },
     "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Web\\PhoneBook.Web.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -173,11 +155,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Core\\PhoneBook.Core.csproj": {
-                "projectPath": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Core\\PhoneBook.Core.csproj"
-              },
-              "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Infrastructure\\PhoneBook.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Infrastructure\\PhoneBook.Infrastructure.csproj"
+              "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Application\\PhoneBook.Application.csproj": {
+                "projectPath": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Application\\PhoneBook.Application.csproj"
               }
             }
           }

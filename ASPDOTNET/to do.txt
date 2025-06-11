@@ -7,3 +7,6 @@ addtransiat
 jwt
 cookie
 rtl
+cqrs
+responsive comment
+mediator

@@ -1,4 +1,4 @@
-namespace PhoneBook.Core.Setting
+namespace PhoneBook.Application.Settings
 {
     public class JwtSettings
     {

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook.Infrastructure", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook.Web", "PhoneBook.Web\PhoneBook.Web.csproj", "{985E3039-B294-458B-9373-40FF384CEF49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook.Application", "PhoneBook.Application\PhoneBook.Application.csproj", "{EEC0CF41-0A6A-4D68-AE76-CAD162FFAFA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{985E3039-B294-458B-9373-40FF384CEF49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{985E3039-B294-458B-9373-40FF384CEF49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{985E3039-B294-458B-9373-40FF384CEF49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEC0CF41-0A6A-4D68-AE76-CAD162FFAFA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEC0CF41-0A6A-4D68-AE76-CAD162FFAFA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEC0CF41-0A6A-4D68-AE76-CAD162FFAFA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEC0CF41-0A6A-4D68-AE76-CAD162FFAFA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

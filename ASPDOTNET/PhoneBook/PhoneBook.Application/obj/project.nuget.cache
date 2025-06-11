@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "tbFSaNM8OVE=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Kasma\\Desktop\\Kasma_Programming_Practice\\ASPDOTNET\\PhoneBook\\PhoneBook.Application\\PhoneBook.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Kasma\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.6\\microsoft.extensions.dependencyinjection.9.0.6.nupkg.sha512",
+    "C:\\Users\\Kasma\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.6\\microsoft.extensions.dependencyinjection.abstractions.9.0.6.nupkg.sha512"
+  ],
+  "logs": []
+}

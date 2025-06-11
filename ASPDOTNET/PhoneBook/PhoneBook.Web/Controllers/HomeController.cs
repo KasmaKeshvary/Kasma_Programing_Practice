@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using PhoneBook.Core.Entities;
-using PhoneBook.Core.Interfaces;
-using PhoneBook.Core.Setting;
+using PhoneBook.Application.Settings;
+using PhoneBook.Application.User.Queries;
 using System;
 using System.Globalization;
 using System.Collections.Generic;

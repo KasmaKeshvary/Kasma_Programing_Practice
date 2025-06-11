@@ -8,12 +8,11 @@ using PhoneBook.Infrastructure.Data;
 
 namespace PhoneBook.Infrastructure.Repositories
 {
-    public class ContactRepository : IContactRepository // اضافه کردن پیاده‌سازی
+    public class ContactRepositoryRead : IContactRepositoryRead // اضافه کردن پیاده‌سازی
     {
-        private readonly PhoneBookContext _context;
+        private readonly ReadDbContext _context; // ✅ استفاده از ReadDbContext
 
-        // دریافت PhoneBookContext از طریق DI
-        public ContactRepository(PhoneBookContext context)
+        public ContactRepositoryRead(ReadDbContext context) // ✅ مقداردهی در constructor
         {
             _context = context;
         }
@@ -42,22 +41,5 @@ namespace PhoneBook.Infrastructure.Repositories
                     c.Address.Contains(searchQuery))
                 .ToListAsync();
         }
-
-        // ثبت contact جدید به کمک EF
-        public async Task AddContactAsync(string firstName, string lastName, string phoneNumber, string address, string email)
-        {
-            var newContact = new Contact
-            {
-                FirstName = firstName,
-                LastName = lastName,
-                PhoneNumber = phoneNumber,
-                Address = address,
-                Email = email
-            };
-            
-            _context.Contacts.Add(newContact);
-            await _context.SaveChangesAsync();
-        }
-    }
-    
+    } 
 }

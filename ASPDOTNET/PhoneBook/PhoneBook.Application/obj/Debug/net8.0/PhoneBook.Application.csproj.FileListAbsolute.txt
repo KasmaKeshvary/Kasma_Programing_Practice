@@ -1,0 +1,16 @@
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Application\bin\Debug\net8.0\PhoneBook.Application.deps.json
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Application\bin\Debug\net8.0\PhoneBook.Application.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Application\bin\Debug\net8.0\PhoneBook.Application.pdb
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Application\bin\Debug\net8.0\PhoneBook.Core.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Application\bin\Debug\net8.0\PhoneBook.Core.pdb
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Application\obj\Debug\net8.0\PhoneBook.Application.csproj.AssemblyReference.cache
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Application\obj\Debug\net8.0\PhoneBook.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Application\obj\Debug\net8.0\PhoneBook.Application.AssemblyInfoInputs.cache
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Application\obj\Debug\net8.0\PhoneBook.Application.AssemblyInfo.cs
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Application\obj\Debug\net8.0\PhoneBook.Application.csproj.CoreCompileInputs.cache
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Application\obj\Debug\net8.0\PhoneBook.Application.sourcelink.json
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Application\obj\Debug\net8.0\PhoneBoo.3B596BBF.Up2Date
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Application\obj\Debug\net8.0\PhoneBook.Application.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Application\obj\Debug\net8.0\refint\PhoneBook.Application.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Application\obj\Debug\net8.0\PhoneBook.Application.pdb
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Application\obj\Debug\net8.0\ref\PhoneBook.Application.dll
