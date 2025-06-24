@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using PhoneBook.Application;
+using PhoneBook.Infrastructure;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +19,11 @@ var key = Encoding.ASCII.GetBytes(secretKey);
 // ثبت سرویس‌های مورد نیاز
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddApplication();
+// builder.Services.AddApplication();
+
+builder.Services
+   .AddInfrastructure(builder.Configuration)   // اول repo/DbContext/Serviceهای infra
+   .AddApplication();                     // بعد mediator/mapper/validator و serviceهای app
 
 // تنظیمات JWT Authentication
 builder.Services.AddAuthentication(options =>

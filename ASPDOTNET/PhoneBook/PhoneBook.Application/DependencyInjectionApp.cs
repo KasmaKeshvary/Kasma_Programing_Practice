@@ -1,8 +1,10 @@
+using AutoMapper;
+using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using PhoneBook.Application.User.Queries;
-using PhoneBook.Application.User.Commands;
-using PhoneBook.Application.Contact.Queries;
-using PhoneBook.Application.Contact.Commands;
+using System.Reflection;
+using PhoneBook.Application.Services;
+
 
 namespace PhoneBook.Application
 {
@@ -10,14 +12,19 @@ namespace PhoneBook.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            // ثبت Queries و Commands
-            services.AddScoped<GetUsersQuery>();
-            services.AddScoped<RegisterUserCommand>();
-            services.AddScoped<ValidateUserCommand>();
-            services.AddScoped<CheckUserExistsCommand>();
-            services.AddScoped<GetContactsQuery>();
-            services.AddScoped<SearchContactsQuery>();
-            services.AddScoped<AddContactCommand>();
+            // 1. MediatR برای Handlerهای CQRS
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            // 2. AutoMapper برای Mapping
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            // 3. Validatorها اگر لازم دارین
+            // services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+            // 4. Serviceهای Use Case
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IContactService, ContactService>();
+
             return services;
         }
     }

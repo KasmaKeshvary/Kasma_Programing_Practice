@@ -1,25 +1,33 @@
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using PhoneBook.Core.Entities;
 using PhoneBook.Core.Interfaces;
+using PhoneBook.Application.DTOs;
+using AutoMapper;
 
-
-namespace PhoneBook.Infrastructure.Services
+namespace PhoneBook.Application.Services
 {
     public class UserService : IUserService
     {
         private readonly IUserRepositoryRead _userRepositoryRead;
         private readonly IUserRepositoryWrite _userRepositoryWrite;
+        private readonly IMapper _mapper;
 
-        public UserService(IUserRepositoryRead userRepositoryRead, IUserRepositoryWrite userRepositoryWrite)
+        public UserService(
+        IUserRepositoryRead userRepositoryRead,
+        IUserRepositoryWrite userRepositoryWrite,
+        IMapper mapper
+        )
         {
             _userRepositoryRead = userRepositoryRead;
             _userRepositoryWrite = userRepositoryWrite;
+            _mapper = mapper;
         }
 
-        public async Task<User?> ValidateUserAsync(string username, string password)
+        public async Task<UserDto> ValidateUserAsync(string username, string password)
         {
-            return await _userRepositoryRead.GetUserByUsernameAndPasswordAsync(username, password);
+            var user = await _userRepositoryRead.GetUserByUsernameAndPasswordAsync(username, password);
+            if (user is null)
+                throw new KeyNotFoundException("کاربری با این مشخصات یافت نشد.");
+
+            return _mapper.Map<UserDto>(user);
         }
 
         public async Task<bool> CheckUserExistsAsync(string username)
