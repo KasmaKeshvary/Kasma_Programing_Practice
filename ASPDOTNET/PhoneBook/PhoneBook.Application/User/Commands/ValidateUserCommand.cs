@@ -1,21 +1,17 @@
-using PhoneBook.Core.Interfaces;
-using PhoneBook.Core.Entities;
-using System.Threading.Tasks;
+using MediatR;
+using PhoneBook.Application.DTOs;
 
 namespace PhoneBook.Application.User.Commands
 {
-    public class ValidateUserCommand
+    public class ValidateUserCommand : IRequest<UserDto>
     {
-        private readonly IUserService _userService;
+        public string Username { get; init; }
+        public string Password { get; init; }
 
-        public ValidateUserCommand(IUserService userService)
+        public ValidateUserCommand(string username, string password)
         {
-            _userService = userService;
-        }
-
-        public async Task<PhoneBook.Core.Entities.User?> Execute(string username, string password)
-        {
-            return await _userService.ValidateUserAsync(username, password);
+            Username = username;
+            Password = password;
         }
     }
 }

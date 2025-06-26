@@ -23,17 +23,17 @@ namespace PhoneBook.Application.Services
 
         public async Task<UserDto> ValidateUserAsync(string username, string password)
         {
-            var user = await _userRepositoryRead.GetUserByUsernameAndPasswordAsync(username, password);
-            if (user is null)
+            var entities = await _userRepositoryRead.GetUserByUsernameAndPasswordAsync(username, password);
+            if (entities is null)
                 throw new KeyNotFoundException("کاربری با این مشخصات یافت نشد.");
 
-            return _mapper.Map<UserDto>(user);
+            return _mapper.Map<UserDto>(entities);
         }
 
         public async Task<bool> CheckUserExistsAsync(string username)
         {
-            var user = await _userRepositoryRead.GetUserByUsernameAsync(username);
-            return user != null;
+            var entities = await _userRepositoryRead.GetUserByUsernameAsync(username);
+            return entities != null;
         }
 
         public async Task RegisterUserAsync(string username, string password, string displayName)
@@ -41,5 +41,22 @@ namespace PhoneBook.Application.Services
             await _userRepositoryWrite.AddUserAsync(username, password, displayName);
         }
 
+        public async Task<List<UserDto>> GetAllUsersAsync()
+        {
+            var entities = await _userRepositoryRead.GetUsersAsync();
+            return _mapper.Map<List<UserDto>>(entities);
+        }
+
+        public async Task<UserDto?> GetUserByUsernameAsync(string username)
+        {
+            var entities = await _userRepositoryRead.GetUserByUsernameAsync(username);
+            return entities is null ? null : _mapper.Map<UserDto?>(entities);
+        }
+
+        public async Task<UserDto?> GetUserByUsernameAndPasswordAsync(string username, string password)
+        {
+            var entities = await _userRepositoryRead.GetUserByUsernameAndPasswordAsync(username,password);
+            return entities is null ? null : _mapper.Map<UserDto?>(entities);
+        }
     }
 }

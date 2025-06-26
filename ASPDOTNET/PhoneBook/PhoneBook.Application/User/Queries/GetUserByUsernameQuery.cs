@@ -1,22 +1,14 @@
-using PhoneBook.Core.Entities;
-using PhoneBook.Core.Interfaces;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using MediatR;
+using PhoneBook.Application.DTOs;
 
 namespace PhoneBook.Application.User.Queries
 {
-    public class GetUserByUsernameQuery
+    public class GetUserByUsernameQuery : IRequest<UserDto?>
     {
-        private readonly IUserRepositoryRead _userRepositoryRead;
-
-        public GetUserByUsernameQuery(IUserRepositoryRead userRepositoryRead)
+        public string UserName { get; init; }
+        public GetUserByUsernameQuery(string username)
         {
-            _userRepositoryRead = userRepositoryRead;
-        }
-
-        public async Task<PhoneBook.Core.Entities.User?> Execute(string username)
-        {
-            return await _userRepositoryRead.GetUserByUsernameAsync(username);
+            UserName = username;
         }
     }
 }

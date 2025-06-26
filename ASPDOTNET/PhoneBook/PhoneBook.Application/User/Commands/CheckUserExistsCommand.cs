@@ -1,20 +1,14 @@
-using PhoneBook.Core.Interfaces;
-using System.Threading.Tasks;
+using MediatR;
 
 namespace PhoneBook.Application.User.Commands
 {
-    public class CheckUserExistsCommand
+    public class CheckUserExistsCommand : IRequest<Unit>
     {
-        private readonly IUserService _userService;
-
-        public CheckUserExistsCommand(IUserService userService)
+        public string Username { get; init; }
+        
+        public CheckUserExistsCommand(string username)
         {
-            _userService = userService;
-        }
-
-        public async Task<bool> Execute(string username)
-        {
-            return await _userService.CheckUserExistsAsync(username);
+            Username = username;
         }
     }
 }

@@ -1,23 +1,14 @@
-using PhoneBook.Core.Entities;
-using PhoneBook.Core.Interfaces;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using MediatR;
+using PhoneBook.Application.DTOs;
 
 namespace PhoneBook.Application.Contact.Queries
 {
-    public class SearchContactsQuery
+    public class SearchContactsQuery : IRequest<List<ContactDto>>
     {
-        private readonly IContactRepositoryRead _contactRepositoryRead;
-
-        public SearchContactsQuery(IContactRepositoryRead contactRepositoryRead)
+        public string _query;
+        public SearchContactsQuery(string query)
         {
-            _contactRepositoryRead = contactRepositoryRead;
-        }
-
-        public async Task<List<PhoneBook.Core.Entities.Contact>> Execute(string searchQuery)
-        {
-            return await _contactRepositoryRead.SearchContactsAsync(searchQuery);
+            _query = query;
         }
     }
-
 }

@@ -1,22 +1,10 @@
-using PhoneBook.Core.Entities;
-using PhoneBook.Core.Interfaces;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using MediatR;
+using PhoneBook.Application.DTOs;
 
 namespace PhoneBook.Application.User.Queries
 {
-    public class GetUsersQuery
+    public class GetUsersQuery : IRequest<List<UserDto>>
     {
-        private readonly IUserRepositoryRead _userRepositoryRead;
-
-        public GetUsersQuery(IUserRepositoryRead userRepositoryRead)
-        {
-            _userRepositoryRead = userRepositoryRead;
-        }
-
-        public async Task<List<PhoneBook.Core.Entities.User>> Execute()
-        {
-            return await _userRepositoryRead.GetUsersAsync();
-        }
+        // چون هیچ پارامتری نداره، خالی می‌مونه
     }
 }

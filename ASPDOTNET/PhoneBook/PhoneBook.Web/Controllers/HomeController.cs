@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using PhoneBook.Application.Settings;
-using PhoneBook.Application.User.Queries;
+using PhoneBook.Application.Services;
 using System;
 using System.Globalization;
 using System.Collections.Generic;

@@ -1,22 +1,14 @@
-using PhoneBook.Core.Entities;
-using PhoneBook.Core.Interfaces;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using MediatR;
+using PhoneBook.Application.DTOs;
 
 namespace PhoneBook.Application.Contact.Commands
 {
-    public class AddContactCommand
+    public class AddContactCommand : IRequest<Unit>
     {
-        private readonly IContactRepositoryWrite _contactRepositoryWrite;
-
-        public AddContactCommand(IContactRepositoryWrite contactRepositoryWrite)
+        public ContactDto _contactDtoAdd;
+        public AddContactCommand(ContactDto _contactDto)
         {
-            _contactRepositoryWrite = contactRepositoryWrite;
-        }
-
-        public async Task Execute(string firstName, string lastName, string phoneNumber, string address, string email)
-        {
-            await _contactRepositoryWrite.AddContactAsync(firstName, lastName, phoneNumber, address, email);
+            _contactDtoAdd = _contactDto;
         }
     }
 }

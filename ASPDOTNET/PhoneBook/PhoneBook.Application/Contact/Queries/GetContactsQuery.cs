@@ -1,22 +1,10 @@
-using PhoneBook.Core.Entities;
-using PhoneBook.Core.Interfaces;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using MediatR;
+using PhoneBook.Application.DTOs;
 
 namespace PhoneBook.Application.Contact.Queries
 {
-    public class GetContactsQuery
+    public class GetContactsQuery : IRequest<List<ContactDto>>
     {
-        private readonly IContactRepositoryRead _contactRepositoryRead;
-
-        public GetContactsQuery(IContactRepositoryRead contactRepositoryRead)
-        {
-            _contactRepositoryRead = contactRepositoryRead;
-        }
-
-        public async Task<List<PhoneBook.Core.Entities.Contact>> Execute()
-        {
-            return await _contactRepositoryRead.GetContactsAsync();
-        }
+        // چون هیچ پارامتری نداره، خالی می‌مونه
     }
 }

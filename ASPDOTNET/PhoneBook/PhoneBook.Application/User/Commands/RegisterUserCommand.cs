@@ -1,20 +1,18 @@
-using PhoneBook.Core.Interfaces;
-using System.Threading.Tasks;
+using MediatR;
 
 namespace PhoneBook.Application.User.Commands
 {
-    public class RegisterUserCommand
+    public class RegisterUserCommand : IRequest<Unit>
     {
-        private readonly IUserService _userService;
-    
-        public RegisterUserCommand(IUserService userService)
+        public string Username { get; init; }
+        public string Password { get; init; }
+        public string DisplayName { get; init; }
+
+        public RegisterUserCommand(string username, string password, string displayName)
         {
-            _userService = userService;
-        }
-    
-        public async Task Execute(string username, string password, string displayName)
-        {
-            await _userService.RegisterUserAsync(username, password, displayName);
+            Username = username;
+            Password = password;
+            DisplayName = displayName;
         }
     }
 }
