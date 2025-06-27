@@ -16,3 +16,5 @@ C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.
 C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Infrastructure\obj\Debug\net8.0\ref\PhoneBook.Infrastructure.dll
 C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Infrastructure\bin\Debug\net8.0\PhoneBook.Infrastructure.runtimeconfig.json
 C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Infrastructure\obj\Debug\net8.0\PhoneBook.Infrastructure.genruntimeconfig.cache
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Infrastructure\bin\Debug\net8.0\PhoneBook.Application.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Infrastructure\bin\Debug\net8.0\PhoneBook.Application.pdb

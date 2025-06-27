@@ -3,11 +3,12 @@ using Microsoft.IdentityModel.Tokens;
 using PhoneBook.Application;
 using PhoneBook.Infrastructure;
 using System.Text;
+using PhoneBook.Application.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // تنظیمات JWT
-// builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 var jwtSettingsSection = builder.Configuration.GetSection("JwtSettings");
 var secretKey = jwtSettingsSection["SecretKey"];
 if (string.IsNullOrEmpty(secretKey))

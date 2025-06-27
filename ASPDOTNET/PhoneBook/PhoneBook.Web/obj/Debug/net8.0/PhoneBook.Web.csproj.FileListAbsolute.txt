@@ -176,3 +176,17 @@ C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.
 C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\bin\Debug\net8.0\FluentValidation.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\bin\Debug\net8.0\MediatR.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\bin\Debug\net8.0\MediatR.Contracts.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\bin\Debug\net8.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\bin\Debug\net8.0\PhoneBook.Application.dll
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\bin\Debug\net8.0\PhoneBook.Application.pdb
+C:\Users\Kasma\Desktop\Kasma_Programming_Practice\ASPDOTNET\PhoneBook\PhoneBook.Web\obj\Debug\net8.0\PhoneBook.Web.MvcApplicationPartsAssemblyInfo.cs

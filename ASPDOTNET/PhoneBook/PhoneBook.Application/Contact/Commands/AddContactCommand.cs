@@ -5,10 +5,10 @@ namespace PhoneBook.Application.Contact.Commands
 {
     public class AddContactCommand : IRequest<Unit>
     {
-        public ContactDto _contactDtoAdd;
+        public ContactDto Contact { get; init; }
         public AddContactCommand(ContactDto _contactDto)
         {
-            _contactDtoAdd = _contactDto;
+            Contact = _contactDto;
         }
     }
 }

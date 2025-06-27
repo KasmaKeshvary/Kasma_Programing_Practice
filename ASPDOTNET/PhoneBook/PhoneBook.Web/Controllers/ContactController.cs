@@ -1,30 +1,33 @@
 using Microsoft.AspNetCore.Mvc;
-using PhoneBook.Core.Interfaces;
+using MediatR;
+using PhoneBook.Application.Contact.Commands;
+using PhoneBook.Application.Contact.Queries;
+using PhoneBook.Application.DTOs;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
 
 namespace PhoneBook.Web.Controllers
 {
     public class ContactController : Controller
     {
-        private readonly IContactRepository _contactRepository;
+        private readonly IMediator _mediator;
 
-        public ContactController(IContactRepository contactRepository)
+        public ContactController(IMediator mediator)
         {
-            _contactRepository = contactRepository;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IActionResult> List()
         {
-            var contacts = await _contactRepository.GetContactsAsync();
+            var contacts = await _mediator.Send(new GetContactsQuery());
             return PartialView("_ContactListPartial", contacts);
         }
 
         [HttpGet]
         public async Task<IActionResult> Search(string query)
         {
-            var contacts = await _contactRepository.SearchContactsAsync(query);
+            var contacts = await _mediator.Send(new SearchContactsQuery(query));
             return PartialView("_SearchPartial", contacts);
         }
 
@@ -70,7 +73,16 @@ namespace PhoneBook.Web.Controllers
 
             try
             {
-                await _contactRepository.AddContactAsync(firstName, lastName, phoneNumber, address, email);
+                var dto = new ContactDto
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    PhoneNumber = phoneNumber,
+                    Address = address,
+                    Email = email
+                };
+
+                await _mediator.Send(new AddContactCommand(dto));
                 TempData["AddContactSuccess"] = true;
                 TempData["AddContactMessage"] = "ثبت اطلاعات تماس با موفقیت انجام شد.";
             }

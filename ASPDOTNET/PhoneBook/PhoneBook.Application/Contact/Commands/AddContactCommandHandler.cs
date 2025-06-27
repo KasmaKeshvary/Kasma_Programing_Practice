@@ -14,7 +14,7 @@ namespace PhoneBook.Application.Contact.Commands
 
         public async Task<Unit> Handle(AddContactCommand request, CancellationToken cancellationToken)
         {
-            await _contactService.AddContactAsync(request._contactDtoAdd);
+            await _contactService.AddContactAsync(request.Contact);
 
             return Unit.Value;
         }
